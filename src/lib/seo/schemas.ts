@@ -1,0 +1,258 @@
+/**
+ * JSON-LD Schema generators for SEO
+ * These schemas help Google understand our content and enable rich snippets
+ */
+
+import React from 'react';
+
+import { toAbsoluteUrl } from './utils';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://draskinbrasil.com.br';
+const SITE_NAME = 'Dra Skin Brasil';
+const LOGO_URL = toAbsoluteUrl('/og.png');
+
+export interface ProductSchemaInput {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+  price: number;
+  currency?: string;
+  availability?: 'InStock' | 'OutOfStock' | 'PreOrder';
+  sku?: string;
+  brand?: string;
+  reviewCount?: number;
+  ratingValue?: number;
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface CollectionSchemaInput {
+  name: string;
+  description: string;
+  url: string;
+  products: Array<{
+    name: string;
+    url: string;
+    image?: string;
+    price: number;
+  }>;
+}
+
+/**
+ * Generate Product schema with Offer
+ */
+export function generateProductSchema(product: ProductSchemaInput): object {
+  const schema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: toAbsoluteUrl(product.image),
+    url: toAbsoluteUrl(product.url),
+    brand: {
+      '@type': 'Brand',
+      name: product.brand || SITE_NAME,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: isNaN(product.price) ? '0.00' : product.price.toFixed(2),
+      priceCurrency: product.currency || 'BRL',
+      availability: `https://schema.org/${product.availability || 'InStock'}`,
+      url: toAbsoluteUrl(product.url),
+      seller: {
+        '@type': 'Organization',
+        name: SITE_NAME,
+      },
+    },
+    sku: product.sku || product.url.split('/').pop(),
+  };
+
+  return schema;
+}
+
+/**
+ * Generate BreadcrumbList schema
+ */
+export function generateBreadcrumbSchema(items: BreadcrumbItem[]): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: toAbsoluteUrl(item.url),
+    })),
+  };
+}
+
+/**
+ * Generate FAQPage schema
+ */
+export function generateFAQSchema(faqs: FAQItem[]): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+/**
+ * Generate ItemList schema for collection pages
+ */
+export function generateItemListSchema(collection: CollectionSchemaInput): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: collection.name,
+    description: collection.description,
+    url: toAbsoluteUrl(collection.url),
+    numberOfItems: collection.products.length,
+    itemListElement: collection.products.map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        name: product.name,
+        url: toAbsoluteUrl(product.url),
+        image: toAbsoluteUrl(product.image || ''),
+        offers: {
+          '@type': 'Offer',
+          price: isNaN(product.price) ? '0.00' : product.price.toFixed(2),
+          priceCurrency: 'BRL',
+        },
+      },
+    })),
+  };
+}
+
+
+/**
+ * Generate Organization schema for homepage
+ */
+export function generateOrganizationSchema(): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: LOGO_URL,
+    description: 'Clínica de estética avançada em Santana, São Paulo. Tratamentos injetáveis e a laser sob medida pela Dra. Samara Rocha.',
+    foundingDate: '2022',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Rua Dr. César, 1161, Sala 1011, Santana',
+      addressLocality: 'São Paulo',
+      addressRegion: 'SP',
+      postalCode: '02013-004',
+      addressCountry: 'BR',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+55-11-99926-3636',
+      contactType: 'reservations',
+      availableLanguage: 'Portuguese',
+    },
+    sameAs: [
+      'https://instagram.com/draskinbrasil',
+    ],
+  };
+}
+
+/**
+ * Generate WebSite schema with SearchAction for sitelinks search box
+ */
+export function generateWebSiteSchema(): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+
+/**
+ * Generate LocalBusiness schema
+ */
+export function generateLocalBusinessSchema(): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalBusiness',
+    '@id': `${SITE_URL}/#localbusiness`,
+    name: SITE_NAME,
+    image: LOGO_URL,
+    url: SITE_URL,
+    telephone: '+55-11-99926-3636',
+    priceRange: '$$$',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Rua Dr. César, 1161, Sala 1011, Santana',
+      addressLocality: 'São Paulo',
+      addressRegion: 'SP',
+      postalCode: '02013-004',
+      addressCountry: 'BR',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: -23.5019,
+      longitude: -46.6254,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '19:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Saturday'],
+        opens: '09:00',
+        closes: '14:00',
+      }
+    ],
+  };
+}
+
+/**
+ * Helper component to inject JSON-LD into the page
+ */
+export function JsonLd({ data }: { data: object | object[] }): React.ReactElement {
+  const schemas = Array.isArray(data) ? data : [data];
+
+  return React.createElement(
+    React.Fragment,
+    null,
+    schemas.map((schema, index) =>
+      React.createElement('script', {
+        key: index,
+        type: 'application/ld+json',
+        dangerouslySetInnerHTML: { __html: JSON.stringify(schema) },
+      })
+    )
+  );
+}

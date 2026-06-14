@@ -1,0 +1,3 @@
+{
+  "installCommand": "npx --yes yarn@1.22.22 install"
+}
