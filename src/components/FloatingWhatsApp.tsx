@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import { getWhatsAppUrl } from '@/lib/utils';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -12,7 +13,7 @@ const buttonClass =
   'fixed right-6 bottom-6 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-logo-gradient flex items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 hover:scale-105 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.3),inset_-2px_-2px_4px_rgba(0,0,0,0.1),4px_4px_16px_rgba(0,0,0,0.2)] active:scale-95';
 
 export const FloatingWhatsApp = () => {
-  const whatsappUrl = "https://wa.me/5511999263636?text=Ol%C3%A1%2C%20Dra.%20Samara!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Samara.";
+  const whatsappUrl = getWhatsAppUrl();
 
   return (
     <motion.a

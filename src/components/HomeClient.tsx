@@ -5,8 +5,10 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import { TREATMENTS, Treatment } from '@/data/treatments';
+import { getWhatsAppUrl } from '@/lib/utils';
 import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
 import GoogleHeroWidget from '@/components/GoogleHeroWidget';
+import GalleryCarousel from '@/components/GalleryCarousel';
 import { 
   Sparkles, 
   Clock, 
@@ -28,23 +30,26 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 
 const TREATMENT_IMAGES: Record<string, string> = {
-  "harmonizacao-facial": "/card_facial_injectables.jpg",
+  "harmonizacao-facial": "/card_harmonizacao.jpg",
   "toxina-botulinica": "/card_facial_injectables.jpg",
-  "preenchimento-labial": "/card_face_profile.png",
-  "skinbooster": "/card_face_profile.png",
-  "profhilo": "/card_face_profile.png",
-  "laser-melasma": "/card_face_profile.png",
-  "laser-rejuvenescimento": "/card_face_profile.png",
-  "tratamentos-capilares": "/card_face_profile.png",
-  "bioestimuladores": "/card_silhouettes.jpg",
-  "criolipolise": "/card_body_planning.jpg",
+  "preenchimento-labial": "/labial.jpeg",
+  "skinbooster": "/skinbooster_final.jpg",
+  "profhilo": "/Profhilo.jpeg",
+  "laser-melasma": "/laser-melasma.jpeg",
+  "laser-rejuvenescimento": "/laser-rejuvenescimento.jpeg",
+  "tratamentos-capilares": "/capilares.jpeg",
+  "bioestimuladores": "/bioestimuladores_final.jpg",
+  "criolipolise": "/criolipolise.jpeg",
+  "microagulhamento": "/microagulhamento.jpeg",
+  "preenchimento-olheiras": "/olheiras.jpeg",
+  "rejuvenescimento-facial": "/rejuvenescimento_final.jpg",
 };
 
 export function HomeClient() {
   const [selectedTreatment, setSelectedTreatment] = useState<Treatment | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
-  const whatsappUrl = "https://wa.me/5511999263636?text=Ol%C3%A1%2C%20Dra.%20Samara!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Samara.";
+  const whatsappUrl = getWhatsAppUrl();
 
   // Accessibility: close modal on ESC key
   useEffect(() => {
@@ -444,7 +449,7 @@ export function HomeClient() {
                 {/* Footer CTA */}
                 <div className="p-4 sm:p-6 border-t border-border/60 bg-secondary/30 flex justify-center sm:justify-end shrink-0">
                   <a
-                    href={`${whatsappUrl}&text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20tratamento%20de%20${encodeURIComponent(selectedTreatment.name)}.`}
+                    href={getWhatsAppUrl(selectedTreatment.name)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="h-10 px-6 bg-logo-gradient text-white text-xs font-semibold rounded-full flex items-center justify-center gap-2 shadow-sm transition-all hover:-translate-y-0.5"
@@ -547,6 +552,9 @@ export function HomeClient() {
             </div>
           </div>
         </section>
+
+        {/* GALLERY SECTION */}
+        <GalleryCarousel />
 
         {/* TESTIMONIALS SECTION */}
         <div id="depoimentos">
@@ -702,7 +710,7 @@ export function HomeClient() {
                         Nossa clínica fica estrategicamente localizada no bairro de Santana, próxima a vias principais e com fácil acesso de transporte.
                       </p>
                       <a
-                        href="https://maps.google.com/?q=Rua+Dr.+César,+1161,+Santana,+São+Paulo"
+                        href="https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-3 inline-flex h-9 px-5 bg-white border border-border text-foreground font-semibold rounded-full items-center justify-center text-[10px] uppercase tracking-wider transition-colors hover:bg-secondary"

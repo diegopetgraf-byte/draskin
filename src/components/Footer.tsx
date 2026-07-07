@@ -1,6 +1,7 @@
 "use client";
 
 import { Phone, ArrowRight, Instagram, MapPin } from 'lucide-react';
+import { getWhatsAppUrl } from '@/lib/utils';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -9,7 +10,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export const Footer = () => {
-  const whatsappUrl = "https://wa.me/5511999263636?text=Ol%C3%A1%2C%20Dra.%20Samara!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Samara.";
+  const whatsappUrl = getWhatsAppUrl();
   const instagramUrl = "https://instagram.com/draskinbrasil";
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -56,8 +57,8 @@ export const Footer = () => {
       title: "Contato & Localização",
       links: [
         { label: "Santana, São Paulo - SP", href: "" },
-        { label: "Rua Dr. César, 1161 - Sala 1011", href: "https://maps.google.com/?q=Rua+Dr.+Cesar+1161+Sala+1011+Santana+Sao+Paulo+SP" },
-        { label: "WhatsApp: (11) 99926-3636", href: "https://wa.me/5511999263636?text=Ol%C3%A1%2C%20Dra.%20Samara!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Samara." },
+        { label: "Rua Dr. César, 1161 - Sala 1011", href: "https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9" },
+        { label: "WhatsApp: (11) 99926-3636", href: getWhatsAppUrl() },
       ]
     }
   ];

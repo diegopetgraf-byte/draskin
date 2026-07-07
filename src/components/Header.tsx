@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { getWhatsAppUrl } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
@@ -23,7 +24,7 @@ export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const whatsappUrl = "https://wa.me/5511999263636?text=Ol%C3%A1%2C%20Dra.%20Samara!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Samara.";
+  const whatsappUrl = getWhatsAppUrl();
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
