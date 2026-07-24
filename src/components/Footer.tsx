@@ -41,7 +41,6 @@ export const Footer = () => {
         { label: "Galeria", href: "#galeria" },
         { label: "Depoimentos", href: "#depoimentos" },
         { label: "Perguntas Frequentes", href: "#faq" },
-        { label: "Contato", href: "#contato" },
       ]
     },
     {
@@ -60,7 +59,6 @@ export const Footer = () => {
         { label: "Santana, São Paulo - SP", href: "" },
         { label: "Rua Dr. César, 1161 - Sala 1011", href: "https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9" },
         { label: "WhatsApp: (11) 99926-3636", href: getWhatsAppUrl() },
-        { label: "Tel: (11) 99926-3636", href: "tel:+5511999263636" },
       ]
     }
   ];
@@ -81,8 +79,6 @@ export const Footer = () => {
                 </p>
                 <address className="not-italic text-xs text-muted-foreground leading-relaxed">
                   Procedimentos injetáveis e tecnologias modernas focados em rejuvenescimento facial com resultados naturais e elegantes em Santana, São Paulo.
-                  <br />
-                  <a href="tel:+5511999263636" className="hover:text-accent transition-colors">(11) 99926-3636</a>
                 </address>
               </div>
 
