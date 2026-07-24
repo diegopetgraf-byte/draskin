@@ -121,6 +121,14 @@ export function HomeClient() {
     {
       question: "Qual tratamento é ideal para mim?",
       answer: "O tratamento ideal é determinado na sua consulta de avaliação, onde avaliamos as particularidades da sua pele e queixas específicas para criar um protocolo sob medida para você."
+    },
+    {
+      question: "Onde fica a clínica Dra. Skin?",
+      answer: "A Clínica Dra. Skin está localizada na Rua Dr. César, 1161 — Sala 1011, no bairro de Santana, São Paulo – SP, CEP 02013-004. Atendemos de segunda a sexta das 9h às 19h e aos sábados das 9h às 14h, exclusivamente com hora marcada."
+    },
+    {
+      question: "Como agendar uma avaliação?",
+      answer: "O agendamento é feito diretamente pelo WhatsApp: (11) 99926-3636. Envie uma mensagem e nossa equipe retornará para confirmar o melhor horário para você."
     }
   ];
 
@@ -141,7 +149,7 @@ export function HomeClient() {
                   <span className="text-xs font-semibold uppercase tracking-wider text-accent">Dra. Skin</span>
                 </div>
                 <h1 className="text-display text-foreground leading-[1.15]">
-                  Realce a sua beleza natural com <span className="text-logo-gradient italic">elegância e segurança</span>
+                   Estética facial e corporal em Santana com <span className="text-logo-gradient italic">elegância e naturalidade</span>
                 </h1>
                 <p className="text-base text-muted-foreground max-w-xl font-light leading-relaxed">
                   Procedimentos injetáveis e tratamentos a laser personalizados, desenvolvidos pela <strong>Dra. Samara Rocha</strong>. Foco em naturalidade, sofisticação e rejuvenescimento duradouro em Santana, São Paulo.
@@ -179,8 +187,12 @@ export function HomeClient() {
                   <div className="relative w-[220px] xs:w-[250px] sm:w-[320px] md:w-[360px] aspect-square rounded-full overflow-hidden [box-shadow:var(--clay-shadow-lg)] z-10 border-2 border-white/60">
                     <img
                       src="/dra_skin_hero_real.jpg"
-                      alt="Dra. Samara Rocha na Clínica Dra. Skin"
+                      alt="Dra. Samara Rocha, Biomédica Esteta da Clínica Dra. Skin em Santana, São Paulo"
                       className="w-full h-full object-cover object-[center_15%]"
+                      width={360}
+                      height={360}
+                      fetchPriority="high"
+                      decoding="sync"
                     />
                   </div>
 
@@ -313,6 +325,7 @@ export function HomeClient() {
                     src="/homepage.webp"
                     alt="Ilustração de Tratamentos Faciais e Corporais baseados na proporção áurea"
                     className="w-full h-full object-contain"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -337,15 +350,23 @@ export function HomeClient() {
                 <div
                   key={treatment.id}
                   onClick={() => setSelectedTreatment(treatment)}
-                  className="group cursor-pointer bg-white rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1.5 border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)] hover:[box-shadow:inset_3px_3px_6px_rgba(255,255,255,0.95),inset_-3px_-3px_6px_rgba(0,0,0,0.04),8px_8px_24px_rgba(0,0,0,0.08)] flex flex-col justify-between min-h-[260px] text-left"
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedTreatment(treatment); } }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Ver detalhes: ${treatment.name}`}
+                  className="group cursor-pointer bg-white rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1.5 border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)] hover:[box-shadow:inset_3px_3px_6px_rgba(255,255,255,0.95),inset_-3px_-3px_6px_rgba(0,0,0,0.04),8px_8px_24px_rgba(0,0,0,0.08)] flex flex-col justify-between min-h-[260px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                 >
                   <div>
                     {/* Visual luxury sketch image */}
                     <div className="w-full h-44 rounded-2xl overflow-hidden mb-6 relative bg-white border border-border/30 flex items-center justify-center transition-all duration-300 group-hover:scale-[1.02]">
                       <img
                         src={TREATMENT_IMAGES[treatment.id] || "/card_face_profile.png"}
-                        alt={treatment.name}
+                        alt={`Procedimento estético: ${treatment.name} — Clínica Dra. Skin, Santana SP`}
                         className="w-full h-full object-cover mix-blend-multiply"
+                        loading="lazy"
+                        decoding="async"
+                        width={340}
+                        height={176}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
                     </div>
@@ -387,6 +408,9 @@ export function HomeClient() {
                 initial={{ scale: 0.95, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-treatment-title"
                 className="relative bg-white rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl z-10 max-h-[85vh] sm:max-h-[90vh] flex flex-col"
               >
                 {/* Header background pattern */}
@@ -398,7 +422,7 @@ export function HomeClient() {
                     <X className="w-5 h-5 text-foreground" />
                   </button>
                   <span className="text-[10px] font-semibold uppercase tracking-widest text-accent bg-white/80 px-3 py-1 rounded-full">Procedimento Estético</span>
-                  <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground mt-4">{selectedTreatment.name}</h3>
+                  <h3 id="modal-treatment-title" className="font-heading text-xl md:text-2xl font-bold text-foreground mt-4">{selectedTreatment.name}</h3>
                   <p className="text-xs text-muted-foreground mt-1 font-light leading-relaxed">{selectedTreatment.subtitle}</p>
                 </div>
 
@@ -480,12 +504,12 @@ export function HomeClient() {
                     {
                       period: "Formação Acadêmica",
                       title: "Biomedicina Estética de Alta Performance",
-                      desc: "Graduada em Biomedicina Estética e Tecnóloga em Estética e Cosmética pela Universidade Nove de Julho, aliando o rigor científico à prática da cosmetologia."
+                      desc: "Graduada em Biomedicina e Tecnóloga em Estética e Cosmética, com sólida base acadêmica e prática clínica focada na entrega de resultados de excelência."
                     },
                     {
                       period: "Especialização Avançada",
                       title: "Expert em Procedimentos Injetáveis",
-                      desc: "Pós-graduada em Biomedicina Estética pela Faculdade Inaci (Finaci), com formação focada em procedimentos injetáveis avançados e tecnologias de alta performance."
+                      desc: "Pós-graduada em Biomedicina Estética, com especialização avançada estritamente focada em procedimentos injetáveis premium e tecnologias de alta performance."
                     },
                     {
                       period: "Certificações Internacionais",
@@ -554,6 +578,9 @@ export function HomeClient() {
         </section>
 
         {/* GALLERY SECTION */}
+        <section className="py-8 text-center bg-transparent">
+          <p className="text-[10px] text-muted-foreground italic">Imagens meramente ilustrativas. Os resultados variam de acordo com o biotipo de cada paciente.</p>
+        </section>
         <GalleryCarousel />
 
         {/* TESTIMONIALS SECTION */}
@@ -678,22 +705,34 @@ export function HomeClient() {
                   <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)]">
                     <img
                       src="/clinic_1.jpg"
-                      alt="Consultório Dra. Skin"
+                      alt="Espaço de atendimento da Clínica Dra. Skin em Santana, São Paulo"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      decoding="async"
+                      width={200}
+                      height={250}
                     />
                   </div>
                   <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)]">
                     <img
                       src="/clinic_2.jpg"
-                      alt="Atendimento Dra. Skin"
+                      alt="Sala de procedimentos estéticos da Clínica Dra. Skin"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      decoding="async"
+                      width={200}
+                      height={250}
                     />
                   </div>
                   <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)]">
                     <img
                       src="/clinic_3.jpg"
-                      alt="Sala de Espera Dra. Skin"
+                      alt="Ambiente interno da Clínica Dra. Skin, Santana SP"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      decoding="async"
+                      width={200}
+                      height={250}
                     />
                   </div>
                 </div>
@@ -702,20 +741,21 @@ export function HomeClient() {
                 <div className="relative rounded-[24px] overflow-hidden border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)] bg-white/40 backdrop-blur-sm p-6 text-center">
                   <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
                     <div className="w-10 h-10 rounded-full bg-logo-gradient flex items-center justify-center text-white shrink-0 mt-1">
-                      <MapPin className="w-5 h-5" />
+                      <MapPin className="w-5 h-5" aria-hidden="true" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-heading text-sm font-semibold text-foreground">Santana, São Paulo</h3>
-                      <p className="text-xs text-muted-foreground font-light leading-relaxed mt-1">
-                        Nossa clínica fica estrategicamente localizada no bairro de Santana, próxima a vias principais e com fácil acesso de transporte.
-                      </p>
+                      <address className="not-italic text-xs text-muted-foreground font-light leading-relaxed mt-1">
+                        Nossa clínica está no bairro de Santana, com fácil acesso de transporte público e estacionamento nas proximidades.
+                      </address>
                       <a
                         href="https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Ver localização da Clínica Dra. Skin no Google Maps"
                         className="mt-3 inline-flex h-9 px-5 bg-white border border-border text-foreground font-semibold rounded-full items-center justify-center text-[10px] uppercase tracking-wider transition-colors hover:bg-secondary"
                       >
-                        Visualizar no Google Maps
+                        Ver no Google Maps
                       </a>
                     </div>
                   </div>

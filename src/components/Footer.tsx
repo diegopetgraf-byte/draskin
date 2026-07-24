@@ -38,6 +38,7 @@ export const Footer = () => {
         { label: "Home", href: "#home" },
         { label: "Tratamentos", href: "#tratamentos" },
         { label: "Sobre a Dra. Samara", href: "#sobre" },
+        { label: "Galeria", href: "#galeria" },
         { label: "Depoimentos", href: "#depoimentos" },
         { label: "Perguntas Frequentes", href: "#faq" },
         { label: "Contato", href: "#contato" },
@@ -59,6 +60,7 @@ export const Footer = () => {
         { label: "Santana, São Paulo - SP", href: "" },
         { label: "Rua Dr. César, 1161 - Sala 1011", href: "https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9" },
         { label: "WhatsApp: (11) 99926-3636", href: getWhatsAppUrl() },
+        { label: "Tel: (11) 99926-3636", href: "tel:+5511999263636" },
       ]
     }
   ];
@@ -77,9 +79,11 @@ export const Footer = () => {
                 <p className="text-sm font-medium text-foreground leading-relaxed">
                   Dra. Samara Rocha — Biomédica Esteta (CRBM 67943).
                 </p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <address className="not-italic text-xs text-muted-foreground leading-relaxed">
                   Procedimentos injetáveis e tecnologias modernas focados em rejuvenescimento facial com resultados naturais e elegantes em Santana, São Paulo.
-                </p>
+                  <br />
+                  <a href="tel:+5511999263636" className="hover:text-accent transition-colors">(11) 99926-3636</a>
+                </address>
               </div>
 
               <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6">

@@ -9,47 +9,26 @@ import '@fontsource/playfair-display/400-italic.css';
 import { Providers } from '@/components/Providers';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://draskinbrasil.com.br';
-const OG_IMAGE = `${SITE_URL}/og.png`; // Fallback to og.png in root/public
+const OG_IMAGE = `${SITE_URL}/og.png`;
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
+  themeColor: '#f5e8df',
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Dra. Skin • Harmonização Facial e Corporal em Santana, São Paulo',
+    default: 'Estética Facial e Corporal em Santana | Dra. Skin',
     template: '%s | Dra. Skin',
   },
-  description: 'Clínica de estética avançada Dra. Skin em Santana, São Paulo. Tratamentos injetáveis e a laser personalizados pela Dra. Samara Rocha (CRBM 67943). Harmonização Facial, Botox, Preenchimento Labial e Bioestimuladores de Colágeno com resultados naturais.',
-  keywords: [
-    'Dra. Skin', 'Dra. Samara Rocha', 'Biomédica Esteta Santana', 'Harmonização Facial Santana',
-    'Botox Santana', 'Preenchimento Labial Santana', 'Bioestimuladores de Colágeno Santana',
-    'Clinica de Estetica Santana', 'Profhilo Santana', 'Skinbooster Santana',
-    'Laser para Melasma Santana', 'Criolipolise Santana', 'Rejuvenescimento Facial Santana',
-  ],
+  description: 'Estética facial e corporal em Santana, São Paulo. Harmonização facial, toxina botulínica, bioestimuladores e laser com a Dra. Samara Rocha (CRBM 67943). Avaliação personalizada.',
   authors: [{ name: 'Dra. Skin', url: SITE_URL }],
   creator: 'Dra. Skin',
   publisher: 'Dra. Skin',
   alternates: {
     canonical: SITE_URL,
-  },
-  openGraph: {
-    title: 'Dra. Skin • Harmonização Facial e Corporal em Santana, São Paulo',
-    description: 'Clínica de estética avançada Dra. Skin em Santana, São Paulo. Tratamentos injetáveis e a laser personalizados pela Dra. Samara Rocha (CRBM 67943).',
-    url: SITE_URL,
-    siteName: 'Dra. Skin',
-    locale: 'pt_BR',
-    type: 'website',
-    images: [
-      {
-        url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: 'Dra. Skin — Estética avançada focada em naturalidade e segurança',
-      },
-    ],
   },
   robots: {
     index: true,
@@ -62,11 +41,33 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
+  openGraph: {
+    title: 'Estética Facial e Corporal em Santana | Dra. Skin',
+    description: 'Procedimentos injetáveis e a laser personalizados pela Dra. Samara Rocha em Santana, São Paulo. Harmonização facial, bioestimuladores, skinbooster e mais.',
+    url: SITE_URL,
+    siteName: 'Dra. Skin',
+    locale: 'pt_BR',
+    type: 'website',
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: 'Clínica Dra. Skin — Estética facial e corporal em Santana, São Paulo',
+      },
+    ],
+  },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dra. Skin • Harmonização Facial e Corporal em Santana, São Paulo',
-    description: 'Clínica de estética avançada Dra. Skin em Santana, São Paulo. Tratamentos injetáveis e a laser personalizados pela Dra. Samara Rocha (CRBM 67943).',
-    images: [OG_IMAGE],
+    title: 'Estética Facial e Corporal em Santana | Dra. Skin',
+    description: 'Procedimentos injetáveis e a laser personalizados pela Dra. Samara Rocha em Santana, São Paulo.',
+    images: [{ url: OG_IMAGE, alt: 'Clínica Dra. Skin — Estética facial e corporal em Santana, São Paulo' }],
+  },
+  manifest: '/site.webmanifest',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Dra. Skin',
   },
 };
 

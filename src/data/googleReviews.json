@@ -1,158 +1,242 @@
 [
     {
-        "nome": "Nury Aymée Garcia",
-        "quando": "2 semanas atrás",
-        "texto": "O atendimento é sempre excelente. Sou cliente da Esthétique desde que me formei. Sempre indico e recomendo. Produtos de excelente qualidade, além de lindos. Recomendo!",
-        "nota": 5
-    },
-    {
-        "nome": "Noelia Medina Roa",
-        "quando": "2 meses atrás",
-        "texto": "Esthétique como siempre sorprendiéndome , producto maravilloso, atención espectacular, traducción del portugués al español impecable! Muchas gracias a todo el equipo en especial a Diego por toda la paciencia y atención nota mil! Bendiciones 🙏🏻🥰 …",
-        "nota": 5
-    },
-    {
-        "nome": "Anna Paula Lima",
-        "quando": "7 meses atrás",
-        "texto": "Já virei cliente!!! Na última compra, ganhei esse logotipo personalizado e exclusivo!!!! Material de excelente qualidade, vendedor educado e atencioso, entrega rápida! SERVIÇO DE EXCELÊNCIA!!! ❤️❤️❤️❤️",
-        "nota": 5
-    },
-    {
-        "nome": "Stéphanie Pianezzer",
-        "quando": "10 meses atrás",
-        "texto": "Simplesmente maravilhosos. Qualidade espetacular, atendimento perfeito, entrega na data. Super recomendo e serei cliente fiel.",
-        "nota": 5
-    },
-    {
-        "nome": "Dri Sousa",
-        "quando": "um ano atrás",
-        "texto": "Atendimento ímpar, atencioso, paciente e dedicado. Os pedidos chegaram bem embalados e antes do prazo, e em todo momento mantiveram-se dispostos a tirar minhas dúvidas. Parabéns pelo trabalho ♥️",
-        "nota": 5
-    },
-    {
-        "nome": "Cristiane Almeida",
-        "quando": "11 meses atrás",
-        "texto": "Minha experiência com a Esthétique é maravilhosa. Sempre compro com eles e os clientes ficam encantados com o material, o que ajuda muito na nossa maneira de trabalhar. Obrigada, Diego. Você é o melhor!",
-        "nota": 5
-    },
-    {
-        "nome": "Minuche Vianna",
-        "quando": "um ano atrás",
-        "texto": "Eu amo e super indico o trabalho. Todos os meus materiais de trabalho foram feitos por ele. Gratidão ✨❤️",
-        "nota": 5
-    },
-    {
-        "nome": "Beatriz S.",
-        "quando": "2 anos atrás",
-        "texto": "Já fiz em várias gráficas, atendimento e qualidade não há igual. Ganho muitos clientes pela qualidade da minha papelaria. Super recomendo!",
-        "nota": 5
-    },
-    {
-        "nome": "Laura M.",
-        "quando": "um ano atrás",
-        "texto": "Sou cliente há anos! Melhor gráfica que conheço, tanto em qualidade como em novidades. Tem tudo que a gente precisa e nem sabia que precisava 😁",
-        "nota": 5
-    },
-    {
-        "nome": "Claudia Derussi",
-        "quando": "um ano atrás",
-        "texto": "Sou cliente há quase 10 anos! Materiais de ótima qualidade, além de lindos. Super recomendo 🫶🏻",
-        "nota": 5
-    },
-    {
-        "nome": "Raphaela Teixeira",
-        "quando": "4 semanas atrás",
-        "texto": "Excelente atendimento, excelente trabalho, ótimo custo-benefício e entrega super rápida. Amei 🥰",
-        "nota": 5
-    },
-    {
-        "nome": "Barbara Souza",
-        "quando": "5 meses atrás",
-        "texto": "Amei tudo! Trabalho excelente e perfeito. Tiraram todas as minhas dúvidas e deram todo o suporte até chegarmos ao logotipo perfeito. Material de muita qualidade. Estou encantada.",
-        "nota": 5
-    },
-    {
-        "nome": "Dy Pescador",
+        "nome": "Mônica",
         "quando": "3 meses atrás",
-        "texto": "Fiquei muito satisfeita com o trabalho da Esthétique. Trabalho com muito capricho, qualidade e acabamento lindo. Entregaram exatamente como eu queria, até mais bonito do que imaginei. Super recomendo!",
+        "texto": "Adorei! O atendimento é maravilhoso! A doutora Samara é uma excelente profissional! Super recomendo 😍",
         "nota": 5
     },
     {
-        "nome": "Aline Beatriz Barbosa",
+        "nome": "UNNA X",
+        "quando": "8 meses atrás",
+        "texto": "Eu amo tanto ir na Dr. Skin! Todo mundo é super simpático, atencioso, ela é uma querida, super nos informa de tudo direitinho e passa muita confiança pra gente. Os resultados dos protocolos que tenho feito com ela são gritantes!! Amo mt",
+        "nota": 5
+    },
+    {
+        "nome": "Regina Mesquita",
+        "quando": "8 meses atrás",
+        "texto": "Excelente profissional, Dra. Samara trata todos os pacientes com clareza em seus procedimentos. Clínica com aparelhos ultra modernos. Adorei, recomendo 100%.",
+        "nota": 5
+    },
+    {
+        "nome": "Gilberto Pedrotti",
+        "quando": "9 meses atrás",
+        "texto": "A Dra. Samara é uma grande profissional. Muito obrigado pelo ótimo serviço! Tive uma excelente experiência.",
+        "nota": 5
+    },
+    {
+        "nome": "Mirella Gomes",
+        "quando": "9 meses atrás",
+        "texto": "Eu amo, a Dra. Samara é uma querida e a clínica linda.",
+        "nota": 5
+    },
+    {
+        "nome": "Gabriel Yamanaka",
+        "quando": "9 meses atrás",
+        "texto": "A Dra. montou um protocolo de tratamento exclusivo e já vi resultados desde a 1ª consulta. Incrível!",
+        "nota": 5
+    },
+    {
+        "nome": "Cicinha Souza",
+        "quando": "8 meses atrás",
+        "texto": "Além de sofisticada, a clínica Dra. Skin é referência em atendimento e qualidade. Mas qual é o diferencial da Dra. Skin? É muito fácil: PROFISSIONALISMO.",
+        "nota": 5
+    },
+    {
+        "nome": "Sabrynna Lucena",
         "quando": "um mês atrás",
-        "texto": "Produtos de excelente qualidade, acabamento impecável e ótimo suporte de vendas desde a escolha até o pós-venda.",
+        "texto": "Excelente atendimento! Toda a equipe está de parabéns. As recepcionistas são super simpáticas e sempre dispostas a ajudar. As esteticistas são muito competentes, atenciosas e cuidadosas. Foi uma experiência incrível e superou minhas expectativas.",
         "nota": 5
     },
     {
-        "nome": "Isabelle Coelho",
+        "nome": "manuella maia",
         "quando": "um mês atrás",
-        "texto": "Super indico! Atendimento impecável! Total satisfação com o serviço 👏🏼👏🏼👏🏼",
+        "texto": "Experiência maravilhosa! A Beatriz e toda a equipe de biomédicas foram muito atenciosas e profissionais. Fiz três procedimentos faciais e fiquei muito satisfeita com o resultado. Recomendo de olhos fechados! ❤️",
         "nota": 5
     },
     {
-        "nome": "Katyane De Oliveira",
+        "nome": "Nilza Oliveira",
+        "quando": "3 semanas atrás",
+        "texto": "Fiz procedimento botox na testa e rinomodelação, ficou simplesmente maravilhoso. Indico com total segurança o trabalho da Dra. Sabrina. Amei 🥰",
+        "nota": 5
+    },
+    {
+        "nome": "Rafaela Caetano",
+        "quando": "6 meses atrás",
+        "texto": "Eu fui extremamente bem atendida, tudo muito incrível e as meninas muito simpáticas e maravilhosas ❤️ Eu amei tudo e a profissional que me atendeu, a Vitória, foi muito profissional e cuidadosa comigo. Sem dúvidas eu voltarei muitas vezes na clínica!",
+        "nota": 5
+    },
+    {
+        "nome": "Marisa Alves",
+        "quando": "9 meses atrás",
+        "texto": "Excelente! Profissionais totalmente comprometidos com nossa satisfação e bem estar. Fiz descoloração de sobrancelhas, depilação de pernas e remoção de vasos — já na 2ª sessão os resultados foram visíveis. Muito obrigada pela atenção e carinho de toda a equipe!",
+        "nota": 5
+    },
+    {
+        "nome": "Thiago Nascimento",
         "quando": "2 meses atrás",
-        "texto": "Amei meu logotipo! Foi difícil escolher entre tantos lindos. Obrigada, Esthétique! Amo vocês ❤️",
+        "texto": "Excelente atendimento, sempre muito bem atendido. Recomendo sem dúvida o melhor lugar para os homens se cuidar e ter uma aparência melhor.",
         "nota": 5
     },
     {
-        "nome": "Aline Kawanami",
+        "nome": "Catarina Seguim",
+        "quando": "2 semanas atrás",
+        "texto": "A Dra. Rafaela Fernandes é uma profissional incrível! Extremamente atenciosa, humana e cuidadosa, ela faz com que cada consulta seja acolhedora e personalizada. Sempre me sinto ouvida, respeitada e muito bem cuidada.",
+        "nota": 5
+    },
+    {
+        "nome": "Willian Carbones",
+        "quando": "uma semana atrás",
+        "texto": "A Doutora Naide é uma profissional dedicada e estudiosa, tem um atendimento humanizado e específico para com cada paciente. Você marca com uma doutora e ganha uma amiga 😉",
+        "nota": 5
+    },
+    {
+        "nome": "Aline Burlina",
+        "quando": "2 semanas atrás",
+        "texto": "Melhor experiência que eu tive, as meninas são super simpáticas e atenciosas. O atendimento é maravilhoso!",
+        "nota": 5
+    },
+    {
+        "nome": "Martha Rodrigues",
+        "quando": "3 meses atrás",
+        "texto": "Depois de um tempo, retorno para a clínica — adorei demais o atendimento, fui super bem recebida. Além de resolverem meu problema, fiquei muito feliz. Obrigada por toda a equipe por cuidar bem de mim. Super indico.",
+        "nota": 5
+    },
+    {
+        "nome": "Keila Santos",
+        "quando": "6 meses atrás",
+        "texto": "Foi excelente. Ela é uma ótima profissional. A clínica é muito bem organizada e fui super bem atendida. O tratamento foi excelente e superou minhas expectativas. Com certeza voltarei.",
+        "nota": 5
+    },
+    {
+        "nome": "Rosemary Oliveira",
+        "quando": "um mês atrás",
+        "texto": "Estou gostando muito, o atendimento excelente começa na recepção. Há um bom acolhimento com transparência nas informações e a profissional é muito cuidadosa.",
+        "nota": 5
+    },
+    {
+        "nome": "Arineide Jesus",
         "quando": "2 meses atrás",
-        "texto": "Já comprei outras vezes na Esthétique e super recomendo. Material de qualidade, preço justo, ótimo atendimento e entrega rápida.",
+        "texto": "Minha experiência foi maravilhosa, fui bem atendida, estou amando meu procedimento. Uma perfeição, incrível!",
         "nota": 5
     },
     {
-        "nome": "Leonora Veras De Mello",
-        "quando": "10 meses atrás",
-        "texto": "Sempre muito competentes e educados. O material fica perfeito. Indico sempre para meus colegas.",
+        "nome": "Gabriella Claro",
+        "quando": "um mês atrás",
+        "texto": "A Isa é uma profissional incrível! O trabalho dela é impecável, ambiente super acolhedor. Recomendo muito ❤️",
         "nota": 5
     },
     {
-        "nome": "Bruna Passarelli",
-        "quando": "um ano atrás",
-        "texto": "Material lindíssimo, de qualidade, super bem embalado e entrega rápida. Meus clientes amam 🥰✨",
+        "nome": "Yaya",
+        "quando": "4 meses atrás",
+        "texto": "A clínica é ótima — 5 estrelas! Destaco a profissional Beatriz, ela é excelente e super dedicada naquilo que faz.",
         "nota": 5
     },
     {
-        "nome": "Eduarda R.",
-        "quando": "2 anos atrás",
-        "texto": "Trabalho impecável, ótima qualidade do material e tudo conforme combinado. Transparência e valor justo.",
+        "nome": "Crislayne Ruiz",
+        "quando": "um mês atrás",
+        "texto": "Adoro o local e os serviços prestados são de confiança e qualidade! Além disso a Renata é um amor de pessoa!!!",
         "nota": 5
     },
     {
-        "nome": "Fabiana Siqueira Tufano",
-        "quando": "um ano atrás",
-        "texto": "Sempre muito satisfeita com a Esthétique, desde a aprovação da arte até a impressão. Tudo ágil e com qualidade excelente. Super indico!",
+        "nome": "Bruno Alves de Oliveira",
+        "quando": "4 meses atrás",
+        "texto": "Clínica muito linda, adorei o atendimento da esteticista Beatriz Matos — super simpática e explica muito bem sobre os procedimentos.",
         "nota": 5
     },
     {
-        "nome": "João Pedro",
-        "quando": "um ano atrás",
-        "texto": "Experiência fora do normal. Alta qualidade dos produtos e do atendimento. Recomendo.",
+        "nome": "Dani Voguel",
+        "quando": "um mês atrás",
+        "texto": "Fiz peeling coreano na unidade e amei meu atendimento com a Luana. Parabéns pelo ambiente!",
         "nota": 5
     },
     {
-        "nome": "Andressa Borges",
-        "quando": "2 anos atrás",
-        "texto": "Amo essa gráfica! Trabalho sempre impecável, atendimento rápido e qualidade perfeita 🥰",
+        "nome": "Luis Humberto Rojas",
+        "quando": "4 meses atrás",
+        "texto": "Excelente atendimento! Equipe muito profissional, atenciosa e cuidadosa em todo o processo. Tive uma experiência ótima. Ambiente agradável e muito profissional. Recomendo!",
         "nota": 5
     },
     {
-        "nome": "Juliana Lagel",
-        "quando": "2 anos atrás",
-        "texto": "Atendimento nota 1000 e qualidade impecável 👏",
+        "nome": "Loma Jacintho",
+        "quando": "2 meses atrás",
+        "texto": "Clínica ótima, bem organizada, fui muito bem atendida, as meninas muito simpáticas. Amei ❤️",
         "nota": 5
     },
     {
-        "nome": "Carla Moreira",
-        "quando": "2 anos atrás",
-        "texto": "Material perfeito, impressão belíssima e atendimento extraordinário.",
+        "nome": "Edneia Peres",
+        "quando": "4 meses atrás",
+        "texto": "Atendimento excelente, sem atrasos, as meninas são muito prestativas e obtive o resultado desejado. Recomendo.",
         "nota": 5
     },
     {
-        "nome": "Eduardo Costa",
-        "quando": "2 anos atrás",
-        "texto": "Ok.",
+        "nome": "Marcela Nunes Santos",
+        "quando": "um mês atrás",
+        "texto": "Estou fazendo um procedimento estético e os profissionais estão de parabéns — ambos têm mãos leves para realizar os procedimentos. Estou amando os resultados. A clínica está de parabéns tanto no atendimento quanto nos procedimentos. Eu super indico! 😍",
+        "nota": 5
+    },
+    {
+        "nome": "Solânea Vasconcelos",
+        "quando": "um mês atrás",
+        "texto": "Tem um atendimento muito carinhoso e profissional, clínica bem situada, sala confortável e toda gentileza sempre presente! Parabéns à equipe.",
+        "nota": 5
+    },
+    {
+        "nome": "Patricia Silva Pereira",
+        "quando": "um mês atrás",
+        "texto": "O local é extremamente agradável, limpo, e o atendimento super humanizado. Além da atenção que a profissional nos dá. Super indico.",
+        "nota": 5
+    },
+    {
+        "nome": "Victoria Gearini",
+        "quando": "um mês atrás",
+        "texto": "Ambiente ótimo, atendimento impecável e valores condizentes com toda a estrutura de qualidade que proporcionam!",
+        "nota": 5
+    },
+    {
+        "nome": "Antônio Abrão Rodrigues Da Silveira",
+        "quando": "2 meses atrás",
+        "texto": "Sou cliente há 12 anos! Maravilhoso! Super indico a todos.",
+        "nota": 5
+    },
+    {
+        "nome": "Eliana Claudia",
+        "quando": "um mês atrás",
+        "texto": "Profissionais maravilhosas, tudo num lugar só. Super recomendo.",
+        "nota": 5
+    },
+    {
+        "nome": "Lucas Jardim",
+        "quando": "um mês atrás",
+        "texto": "Ótimas funcionárias! Destaco o excelente trabalho da profissional Karol — educada, atenciosa e simpática. Muito sucesso para todas!",
+        "nota": 5
+    },
+    {
+        "nome": "Carla",
+        "quando": "um mês atrás",
+        "texto": "Um lugar aconchegante, com profissionais de primeira e trabalho executado com perfeição.",
+        "nota": 5
+    },
+    {
+        "nome": "Sandra Regina",
+        "quando": "2 meses atrás",
+        "texto": "Satisfatório e agradável, profissionais altamente qualificados.",
+        "nota": 5
+    },
+    {
+        "nome": "Micelene",
+        "quando": "9 meses atrás",
+        "texto": "Fui muito bem atendida, tratada com muito carinho. Foi feita uma avaliação exclusiva para o meu tratamento e em pouco tempo já vi os resultados.",
+        "nota": 5
+    },
+    {
+        "nome": "TeiTe 92",
+        "quando": "2 meses atrás",
+        "texto": "O local é bem espaçoso e bem organizado. Foi a minha primeira vez e já amei — vou ir mais vezes. Atendimento perfeito, sem palavras.",
+        "nota": 5
+    },
+    {
+        "nome": "Claudemir Cavalcante",
+        "quando": "uma semana atrás",
+        "texto": "Super indico essa clínica, são profissionais incríveis, dedicados e super atenciosos. Em breve retornarei!!!",
         "nota": 5
     }
 ]

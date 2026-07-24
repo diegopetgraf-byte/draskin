@@ -4,11 +4,10 @@
  */
 
 import React from 'react';
-
 import { toAbsoluteUrl } from './utils';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://draskinbrasil.com.br';
-const SITE_NAME = 'Dra Skin Brasil';
+const SITE_NAME = 'Dra. Skin';
 const LOGO_URL = toAbsoluteUrl('/og.png');
 
 export interface ProductSchemaInput {
@@ -96,7 +95,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]): object {
 }
 
 /**
- * Generate FAQPage schema
+ * Generate FAQPage schema — must match visible FAQ content exactly
  */
 export function generateFAQSchema(faqs: FAQItem[]): object {
   return {
@@ -142,7 +141,6 @@ export function generateItemListSchema(collection: CollectionSchemaInput): objec
   };
 }
 
-
 /**
  * Generate Organization schema for homepage
  */
@@ -150,14 +148,18 @@ export function generateOrganizationSchema(): object {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
-    logo: LOGO_URL,
-    description: 'Clínica de estética avançada em Santana, São Paulo. Tratamentos injetáveis e a laser sob medida pela Dra. Samara Rocha.',
+    logo: {
+      '@type': 'ImageObject',
+      url: LOGO_URL,
+    },
+    description: 'Clínica de estética facial e corporal em Santana, São Paulo. Tratamentos injetáveis e a laser sob medida pela Dra. Samara Rocha (CRBM 67943).',
     foundingDate: '2022',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Rua Dr. César, 1161, Sala 1011, Santana',
+      streetAddress: 'Rua Dr. César, 1161, Sala 1011',
       addressLocality: 'São Paulo',
       addressRegion: 'SP',
       postalCode: '02013-004',
@@ -166,51 +168,52 @@ export function generateOrganizationSchema(): object {
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+55-11-99926-3636',
-      contactType: 'reservations',
+      contactType: 'customer service',
       availableLanguage: 'Portuguese',
     },
     sameAs: [
       'https://instagram.com/draskinbrasil',
+      'https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9',
     ],
   };
 }
 
 /**
- * Generate WebSite schema with SearchAction for sitelinks search box
+ * Generate WebSite schema — no SearchAction since /search does not exist
  */
 export function generateWebSiteSchema(): object {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
+    alternateName: 'Clínica Dra. Skin Santana',
     url: SITE_URL,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
+    description: 'Estética facial e corporal em Santana, São Paulo — procedimentos injetáveis e a laser com a Dra. Samara Rocha.',
+    inLanguage: 'pt-BR',
   };
 }
 
 /**
- * Generate LocalBusiness schema
+ * Generate HealthAndBeautyBusiness (LocalBusiness) schema
+ * Note: Dra. Samara Rocha is a Biomédica Esteta (CRBM), not a physician.
+ * HealthAndBeautyBusiness is the correct type.
  */
 export function generateLocalBusinessSchema(): object {
   return {
     '@context': 'https://schema.org',
-    '@type': 'MedicalBusiness',
+    '@type': 'HealthAndBeautyBusiness',
     '@id': `${SITE_URL}/#localbusiness`,
     name: SITE_NAME,
     image: LOGO_URL,
     url: SITE_URL,
     telephone: '+55-11-99926-3636',
-    priceRange: '$$$',
+    priceRange: '$$',
+    currenciesAccepted: 'BRL',
+    paymentAccepted: 'Cash, Credit Card',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Rua Dr. César, 1161, Sala 1011, Santana',
+      streetAddress: 'Rua Dr. César, 1161, Sala 1011',
       addressLocality: 'São Paulo',
       addressRegion: 'SP',
       postalCode: '02013-004',
@@ -220,6 +223,11 @@ export function generateLocalBusinessSchema(): object {
       '@type': 'GeoCoordinates',
       latitude: -23.5019,
       longitude: -46.6254,
+    },
+    hasMap: 'https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9',
+    areaServed: {
+      '@type': 'City',
+      name: 'São Paulo',
     },
     openingHoursSpecification: [
       {
@@ -233,7 +241,32 @@ export function generateLocalBusinessSchema(): object {
         dayOfWeek: ['Saturday'],
         opens: '09:00',
         closes: '14:00',
-      }
+      },
+    ],
+    sameAs: [
+      'https://instagram.com/draskinbrasil',
+      'https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9',
+    ],
+  };
+}
+
+/**
+ * Generate Person schema for Dra. Samara Rocha
+ */
+export function generatePersonSchema(): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${SITE_URL}/#person-samara-rocha`,
+    name: 'Dra. Samara Rocha',
+    jobTitle: 'Biomédica Esteta',
+    description: 'Biomédica Esteta (CRBM 67943) especialista em procedimentos injetáveis e tecnologias a laser. Atua na Clínica Dra. Skin em Santana, São Paulo.',
+    image: `${SITE_URL}/dra_skin_hero_real.jpg`,
+    worksFor: {
+      '@id': `${SITE_URL}/#localbusiness`,
+    },
+    sameAs: [
+      'https://instagram.com/draskinbrasil',
     ],
   };
 }

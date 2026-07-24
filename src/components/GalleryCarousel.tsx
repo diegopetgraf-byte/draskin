@@ -1,27 +1,41 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
-  "/galeria-7.jpg",
-  "/galeria-1.png",
-  "/clinic_1.jpg",
-  "/galeria-4.jpg",
-  "/dra_skin_hero_real.jpg",
-  "/galeria-6.jpg",
-  "/clinic_2.jpg",
-  "/galeria-2.jpg",
-  "/galeria-doctor.jpg",
-  "/galeria-5.jpg",
-  "/clinic_3.jpg",
-  "/galeria-3.jpg",
+  { src: "/galeria-8.jpg",       alt: "Resultado de procedimento estético na Clínica Dra. Skin em Santana" },
+  { src: "/clinic_1.jpg",        alt: "Espaço de atendimento da Clínica Dra. Skin, Santana SP" },
+  { src: "/galeria-4.jpg",       alt: "Galeria de procedimentos faciais — Clínica Dra. Skin" },
+  { src: "/galeria-10.png",      alt: "Tratamento estético realizado na Clínica Dra. Skin" },
+  { src: "/dra_skin_hero_real.jpg", alt: "Dra. Samara Rocha, Biomédica Esteta em Santana, São Paulo" },
+  { src: "/galeria-2.jpg",       alt: "Procedimento facial na Clínica Dra. Skin" },
+  { src: "/galeria-9.jpg",       alt: "Imagem da galeria de resultados estéticos da Dra. Skin" },
+  { src: "/galeria-doctor.jpg",  alt: "Equipe profissional da Clínica Dra. Skin em Santana" },
+  { src: "/clinic_3.jpg",        alt: "Ambiente interno da Clínica Dra. Skin, Santana, São Paulo" },
+  { src: "/galeria-1.png",       alt: "Galeria de estética facial — harmonização e injetáveis" },
+  { src: "/galeria-5.jpg",       alt: "Imagem de resultado de tratamento corporal" },
+  { src: "/galeria-11.jpg",      alt: "Resultado visual de procedimento estético — Clínica Dra. Skin" },
+  { src: "/galeria-7.jpg",       alt: "Foto de galeria de procedimentos faciais em Santana" },
+  { src: "/clinic_2.jpg",        alt: "Sala de procedimentos da Clínica Dra. Skin" },
+  { src: "/galeria-6.jpg",       alt: "Galeria de tratamentos a laser e injetáveis" },
+  { src: "/galeria-3.jpg",       alt: "Resultado de estética facial — Dra. Skin, Santana SP" },
 ];
 
 export default function GalleryCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    prefersReducedMotion.current = mq.matches;
+    const listener = (e: MediaQueryListEvent) => { prefersReducedMotion.current = e.matches; };
+    mq.addEventListener('change', listener);
+    return () => mq.removeEventListener('change', listener);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion.current) return;
     const timer = setInterval(() => {
       handleNext();
     }, 4500);
@@ -34,11 +48,11 @@ export default function GalleryCarousel() {
   const items = [-1, 0, 1].map(offset => {
     const absoluteIndex = currentIndex + offset;
     const imageIndex = ((absoluteIndex % images.length) + images.length) % images.length;
-    return { offset, absoluteIndex, src: images[imageIndex] };
+    return { offset, absoluteIndex, image: images[imageIndex] };
   });
 
   return (
-    <section className="py-24 bg-transparent overflow-hidden">
+    <section id="galeria" className="py-24 bg-transparent overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-accent/80">NOSSO ESPAÇO</span>
@@ -48,7 +62,7 @@ export default function GalleryCarousel() {
 
         <div className="relative w-full h-[450px] md:h-[550px] flex items-center justify-center">
           <AnimatePresence initial={false}>
-            {items.map(({ offset, absoluteIndex, src }) => {
+            {items.map(({ offset, absoluteIndex, image }) => {
               const isCenter = offset === 0;
               const sign = Math.sign(offset);
 
@@ -60,7 +74,6 @@ export default function GalleryCarousel() {
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.05}
                   onDragEnd={(e, { offset: dragOffset }) => {
-                    // Only allow sliding forward
                     if (dragOffset.x < -30) handleNext();
                   }}
                   initial={{ 
@@ -72,7 +85,7 @@ export default function GalleryCarousel() {
                   animate={{
                     opacity: isCenter ? 1 : 0.6,
                     x: offset * 95 + "%",
-                    scale: isCenter ? 1.05 : 0.85, // Center is prominent
+                    scale: isCenter ? 1.05 : 0.85,
                     zIndex: isCenter ? 10 : 5,
                   }}
                   exit={{ 
@@ -87,9 +100,11 @@ export default function GalleryCarousel() {
                   }}
                 >
                   <img
-                    src={src}
-                    alt={`Galeria ${absoluteIndex}`}
+                    src={image.src}
+                    alt={image.alt}
                     className="w-full h-full object-cover pointer-events-none"
+                    loading="lazy"
+                    decoding="async"
                   />
                   
                   {/* Tinted, faded overlay for side items */}
