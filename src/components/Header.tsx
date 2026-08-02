@@ -108,11 +108,10 @@ export const Header = () => {
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 rounded-lg hover:text-logo-gradient ${
-                      activeSection === item.href.substring(1)
+                    className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 rounded-lg hover:text-logo-gradient ${activeSection === item.href.substring(1)
                         ? 'text-logo-gradient bg-background/50 [box-shadow:inset_1px_1px_2px_rgba(0,0,0,0.02)]'
                         : 'text-muted-foreground'
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </a>
@@ -177,11 +176,10 @@ export const Header = () => {
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`block py-2.5 text-xs font-semibold uppercase tracking-[0.15em] transition-all hover:text-logo-gradient ${
-                      activeSection === item.href.substring(1)
+                    className={`block py-2.5 text-xs font-semibold uppercase tracking-[0.15em] transition-all hover:text-logo-gradient ${activeSection === item.href.substring(1)
                         ? 'text-logo-gradient pl-2 border-l-2 border-primary/50'
                         : 'text-foreground'
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </a>

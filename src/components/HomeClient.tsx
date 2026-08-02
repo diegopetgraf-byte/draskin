@@ -9,17 +9,17 @@ import { getWhatsAppUrl } from '@/lib/utils';
 import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
 import GoogleHeroWidget from '@/components/GoogleHeroWidget';
 import GalleryCarousel from '@/components/GalleryCarousel';
-import { 
-  Sparkles, 
-  Clock, 
-  ShieldCheck, 
-  User, 
-  MapPin, 
-  Instagram, 
-  Check, 
-  ChevronDown, 
-  Star, 
-  Award, 
+import {
+  Sparkles,
+  Clock,
+  ShieldCheck,
+  User,
+  MapPin,
+  Instagram,
+  Check,
+  ChevronDown,
+  Star,
+  Award,
   ArrowRight,
   ShieldAlert,
   ThumbsUp,
@@ -149,7 +149,7 @@ export function HomeClient() {
                   <span className="text-xs font-semibold uppercase tracking-wider text-accent">Dra. Skin</span>
                 </div>
                 <h1 className="text-display text-foreground leading-[1.15]">
-                   Estética facial e corporal em Santana com <span className="text-logo-gradient italic">elegância e naturalidade</span>
+                  Estética facial e corporal em Santana com <span className="text-logo-gradient italic">elegância e naturalidade</span>
                 </h1>
                 <p className="text-base text-muted-foreground max-w-xl font-light leading-relaxed">
                   Procedimentos injetáveis e tratamentos a laser personalizados, desenvolvidos pela <strong>Dra. Samara Rocha</strong>. Foco em naturalidade, sofisticação e rejuvenescimento duradouro em Santana, São Paulo.
@@ -317,7 +317,7 @@ export function HomeClient() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Illustration Image Column */}
               <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center">
                 <div className="w-full max-w-[380px] aspect-square bg-transparent flex items-center justify-center">
@@ -578,10 +578,14 @@ export function HomeClient() {
         </section>
 
         {/* GALLERY SECTION */}
-        <section className="py-8 text-center bg-transparent">
-          <p className="text-[10px] text-muted-foreground italic">Imagens meramente ilustrativas. Os resultados variam de acordo com o biotipo de cada paciente.</p>
-        </section>
         <GalleryCarousel />
+        <section className="py-6 flex justify-center bg-transparent px-4">
+          <div className="p-5 max-w-xl text-center bg-secondary/30 rounded-2xl border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)]">
+            <p className="text-[11px] text-muted-foreground font-light leading-relaxed italic">
+              Os resultados são individuais, podem variar entre pacientes e não constituem promessa ou garantia de resultado.
+            </p>
+          </div>
+        </section>
 
         {/* TESTIMONIALS SECTION */}
         <div id="depoimentos">
