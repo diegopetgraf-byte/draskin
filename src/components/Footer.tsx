@@ -9,7 +9,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export const Footer = () => {
+export const Footer = ({ directory }: { directory?: React.ReactNode }) => {
   const whatsappUrl = getWhatsAppUrl();
   const instagramUrl = "https://instagram.com/draskinbrasil";
 
@@ -40,23 +40,10 @@ export const Footer = () => {
       ]
     },
     {
-      title: "Principais tratamentos",
-      links: [
-        { label: "Harmonização facial", href: "/harmonizacao-facial" },
-        { label: "Toxina botulínica (Botox)", href: "/toxina-botulinica" },
-        { label: "Preenchimento labial", href: "/preenchimento-labial" },
-        { label: "Bioestimuladores de colágeno", href: "/bioestimuladores-de-colageno" },
-        { label: "Fios de PDO", href: "/fios-de-pdo" },
-        { label: "Harmonização glútea", href: "/harmonizacao-glutea" },
-        { label: "Criolipólise", href: "/criolipolise" },
-        { label: "Escleroterapia (vasinhos)", href: "/escleroterapia" },
-      ]
-    },
-    {
       title: "Contato e localização",
       links: [
-        { label: "Santana, São Paulo - SP", href: "" },
-        { label: "Rua Dr. César, 1161 - Sala 1011", href: "https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9" },
+        { label: "Santana, São Paulo, SP", href: "" },
+        { label: "Rua Dr. César, 1161, Sala 1011", href: "https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9" },
         { label: "WhatsApp: (11) 99926-3636", href: getWhatsAppUrl() },
       ]
     }
@@ -125,7 +112,7 @@ export const Footer = () => {
             </div>
 
             {/* Right Column: Links Grid */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4 lg:pl-8 border-t lg:border-t-0 lg:border-l border-white/50 pt-8 lg:pt-0">
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-4 lg:pl-8 border-t lg:border-t-0 lg:border-l border-white/50 pt-8 lg:pt-0">
               {linkSections.map((section) => (
                 <div key={section.title} className="flex flex-col space-y-5">
                   <h3 className="font-heading text-base font-semibold text-foreground">
@@ -165,6 +152,8 @@ export const Footer = () => {
               ))}
             </div>
           </div>
+
+          {directory}
 
           {/* Bottom Divider & Copyright */}
           <div className="mt-10 md:mt-16 pt-8 border-t border-white/40 flex flex-col gap-2">

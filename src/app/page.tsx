@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { HomeClient } from '@/components/HomeClient';
+import { TreatmentsDirectory } from '@/components/site/TreatmentsDirectory';
 import {
   JsonLd,
   generateOrganizationSchema,
@@ -69,7 +70,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={[organizationSchema, websiteSchema, localBusinessSchema, personSchema, faqSchema, ...VIDEOS.map(videoSchema)]} />
-      <HomeClient />
+      <HomeClient footerDirectory={<TreatmentsDirectory />} />
     </>
   );
 }

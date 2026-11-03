@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
@@ -54,7 +55,7 @@ const TREATMENT_SLUGS: Record<string, string> = {
   "preenchimento-olheiras": "preenchimento-de-olheiras",
 };
 
-export function HomeClient() {
+export function HomeClient({ footerDirectory }: { footerDirectory?: React.ReactNode }) {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   const whatsappUrl = getWhatsAppUrl();
@@ -360,13 +361,13 @@ export function HomeClient() {
               ))}
             </div>
             <div className="mt-12">
-              <a
+              <Link
                 href="/tratamentos"
                 className="inline-flex items-center gap-2 rounded-full bg-white border border-border/60 px-7 py-3.5 text-sm font-semibold text-foreground min-h-11 [box-shadow:var(--clay-shadow-sm)] hover:-translate-y-0.5 transition-transform"
               >
                 Ver todos os tratamentos
                 <ArrowRight className="w-4 h-4 text-accent" aria-hidden="true" />
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -564,7 +565,7 @@ export function HomeClient() {
                       <h4 className="font-heading text-sm font-semibold text-foreground">Endereço</h4>
                       <p className="text-xs text-muted-foreground font-light leading-relaxed mt-1">
                         Rua Dr. César, 1161, sala 1011<br />
-                        Santana • São Paulo - SP<br />
+                        Santana • São Paulo, SP<br />
                         CEP 02013-004
                       </p>
                     </div>
@@ -663,7 +664,7 @@ export function HomeClient() {
         </section>
       </main>
 
-      <Footer />
+      <Footer directory={footerDirectory} />
     </div>
   );
 }

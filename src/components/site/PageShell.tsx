@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
+import { TreatmentsDirectory } from '@/components/site/TreatmentsDirectory';
 
 /** Moldura das páginas internas: cabeçalho fixo, conteúdo e rodapé. */
 export function PageShell({ children }: { children: React.ReactNode }) {
@@ -11,7 +12,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
       <main id="conteudo" className="flex-1 pt-24">
         {children}
       </main>
-      <Footer />
+      <Footer directory={<TreatmentsDirectory />} />
     </div>
   );
 }

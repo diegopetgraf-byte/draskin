@@ -34,15 +34,15 @@ export default function GalleryCarousel() {
     return () => mq.removeEventListener('change', listener);
   }, []);
 
+  const handleNext = () => setCurrentIndex((prev) => prev + 1);
+
   useEffect(() => {
     if (prefersReducedMotion.current) return;
     const timer = setInterval(() => {
-      handleNext();
+      setCurrentIndex((prev) => prev + 1);
     }, 4500);
     return () => clearInterval(timer);
   }, []);
-
-  const handleNext = () => setCurrentIndex((prev) => prev + 1);
 
   // Show exactly 3 items at a time (-1, 0, 1)
   const items = [-1, 0, 1].map(offset => {

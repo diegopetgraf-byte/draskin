@@ -225,10 +225,10 @@ export function generateLocalBusinessSchema(): object {
       longitude: -46.6371956,
     },
     hasMap: 'https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9',
-    areaServed: {
-      '@type': 'City',
-      name: 'São Paulo',
-    },
+    areaServed: [
+      { '@type': 'Place', name: 'Santana, Zona Norte de São Paulo' },
+      { '@type': 'City', name: 'São Paulo' },
+    ],
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',

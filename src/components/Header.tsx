@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { getWhatsAppUrl } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -77,10 +79,9 @@ export const Header = () => {
     }
   };
 
-  useEffect(() => {
-    const path = window.location.pathname;
-    if (path !== '/') setActiveSection(sectionId(path));
-  }, []);
+  // Fora da home a seção ativa vem do endereço; na home, do rolamento.
+  const pathname = usePathname();
+  const currentSection = pathname && pathname !== '/' ? sectionId(pathname) : activeSection;
 
   return (
     <>
@@ -102,13 +103,13 @@ export const Header = () => {
 
               {/* Logo - CENTERED on Mobile, LEFT on Desktop */}
               <div className="absolute left-1/2 -translate-x-1/2 lg:static lg:left-0 lg:translate-x-0 flex-shrink-0 flex items-center">
-                <a
+                <Link
                   href="/#home"
                   onClick={(e) => handleNavClick(e, "/#home")}
                   className="flex items-center gap-1.5"
                 >
                   <img src="/logo.png" alt="Dra. Skin Logo" className="h-8 md:h-10 w-auto object-contain" />
-                </a>
+                </Link>
               </div>
 
               {/* Desktop Menu - Inline (lg only) */}
@@ -118,7 +119,7 @@ export const Header = () => {
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 rounded-lg hover:text-logo-gradient ${activeSection === sectionId(item.href)
+                    className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 rounded-lg hover:text-logo-gradient ${currentSection === sectionId(item.href)
                         ? 'text-logo-gradient bg-background/50 [box-shadow:inset_1px_1px_2px_rgba(0,0,0,0.02)]'
                         : 'text-muted-foreground'
                       }`}
@@ -186,7 +187,7 @@ export const Header = () => {
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`block py-2.5 text-xs font-semibold uppercase tracking-[0.15em] transition-all hover:text-logo-gradient ${activeSection === sectionId(item.href)
+                    className={`block py-2.5 text-xs font-semibold uppercase tracking-[0.15em] transition-all hover:text-logo-gradient ${currentSection === sectionId(item.href)
                         ? 'text-logo-gradient pl-2 border-l-2 border-primary/50'
                         : 'text-foreground'
                       }`}
