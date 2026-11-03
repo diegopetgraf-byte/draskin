@@ -13,17 +13,12 @@ export const Footer = () => {
   const whatsappUrl = getWhatsAppUrl();
   const instagramUrl = "https://instagram.com/draskinbrasil";
 
+  // Na home, links com âncora rolam suavemente; fora dela navegam normalmente.
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#tratamento-')) {
-      e.preventDefault();
-      window.location.hash = ''; // reset so it triggers hashchange even if clicked twice
-      window.location.hash = href;
-      return;
-    }
-    e.preventDefault();
-    const targetId = href.substring(1);
-    const element = document.getElementById(targetId);
+    if (!href.startsWith('/#') || window.location.pathname !== '/') return;
+    const element = document.getElementById(href.slice(2));
     if (element) {
+      e.preventDefault();
       window.scrollTo({
         top: element.offsetTop - 80,
         behavior: 'smooth'
@@ -35,26 +30,30 @@ export const Footer = () => {
     {
       title: "Menu",
       links: [
-        { label: "Home", href: "#home" },
-        { label: "Tratamentos", href: "#tratamentos" },
-        { label: "Sobre a Dra. Samara", href: "#sobre" },
-        { label: "Galeria", href: "#galeria" },
-        { label: "Depoimentos", href: "#depoimentos" },
-        { label: "Perguntas Frequentes", href: "#faq" },
+        { label: "Home", href: "/#home" },
+        { label: "Todos os tratamentos", href: "/tratamentos" },
+        { label: "Sobre a Dra. Samara", href: "/dra-samara-rocha" },
+        { label: "Galeria", href: "/#galeria" },
+        { label: "Depoimentos", href: "/#depoimentos" },
+        { label: "Perguntas frequentes", href: "/#faq" },
+        { label: "Política de privacidade", href: "/politica-de-privacidade" },
       ]
     },
     {
-      title: "Principais Tratamentos",
+      title: "Principais tratamentos",
       links: [
-        { label: "Harmonização Facial", href: "#tratamento-harmonizacao-facial" },
-        { label: "Preenchimento Labial", href: "#tratamento-preenchimento-labial" },
-        { label: "Toxina Botulínica", href: "#tratamento-toxina-botulinica" },
-        { label: "Bioestimuladores de Colágeno", href: "#tratamento-bioestimuladores" },
-        { label: "Profhilo & Skinbooster", href: "#tratamento-profhilo" },
+        { label: "Harmonização facial", href: "/harmonizacao-facial" },
+        { label: "Toxina botulínica (Botox)", href: "/toxina-botulinica" },
+        { label: "Preenchimento labial", href: "/preenchimento-labial" },
+        { label: "Bioestimuladores de colágeno", href: "/bioestimuladores-de-colageno" },
+        { label: "Fios de PDO", href: "/fios-de-pdo" },
+        { label: "Harmonização glútea", href: "/harmonizacao-glutea" },
+        { label: "Criolipólise", href: "/criolipolise" },
+        { label: "Escleroterapia (vasinhos)", href: "/escleroterapia" },
       ]
     },
     {
-      title: "Contato & Localização",
+      title: "Contato e localização",
       links: [
         { label: "Santana, São Paulo - SP", href: "" },
         { label: "Rua Dr. César, 1161 - Sala 1011", href: "https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9" },
@@ -75,7 +74,7 @@ export const Footer = () => {
 
               <div className="space-y-4 max-w-sm mb-8">
                 <p className="text-sm font-medium text-foreground leading-relaxed">
-                  Dra. Samara Rocha — Biomédica Esteta (CRBM 67943).
+                  Dra. Samara Rocha, biomédica esteta (CRBM 67943).
                 </p>
                 <address className="not-italic text-xs text-muted-foreground leading-relaxed">
                   Procedimentos injetáveis e tecnologias modernas focados em rejuvenescimento facial com resultados naturais e elegantes em Santana, São Paulo.
@@ -136,7 +135,7 @@ export const Footer = () => {
                     {section.links.map((link) => (
                       <li key={link.label}>
                         {link.href ? (
-                          link.href.startsWith("#") ? (
+                          link.href.startsWith("/") ? (
                             <a
                               href={link.href}
                               onClick={(e) => handleNavClick(e, link.href)}
@@ -172,7 +171,7 @@ export const Footer = () => {
             <div className="flex flex-col md:flex-row md:justify-between gap-4 text-[10px] text-muted-foreground text-left">
               <p className="flex flex-col gap-0.5">
                 <span>© {new Date().getFullYear()} Dra. Skin • Dra. Samara Rocha. Todos os direitos reservados.</span>
-                <span>CRBM 67943 • Biomédica Esteta</span>
+                <span>CRBM 67943 • Biomédica esteta</span>
               </p>
               <a
                 href="https://medlogos.com.br/"

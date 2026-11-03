@@ -53,7 +53,7 @@ const GoogleReviewsCarousel = ({
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header - Left aligned */}
         <div className="mb-10 text-center lg:text-left">
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent">Opinião das Pacientes</span>
+          <span className="text-xs font-semibold uppercase tracking-widest text-accent">Opinião das pacientes</span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-semibold text-foreground mt-2">
             O que nossas <span className="text-logo-gradient italic font-normal">pacientes</span> dizem
           </h2>

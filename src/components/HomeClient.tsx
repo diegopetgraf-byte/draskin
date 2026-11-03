@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
-import { TREATMENTS, Treatment } from '@/data/treatments';
+import { TREATMENTS } from '@/data/treatments';
 import { getWhatsAppUrl } from '@/lib/utils';
 import GoogleReviewsCarousel from '@/components/GoogleReviewsCarousel';
 import GoogleHeroWidget from '@/components/GoogleHeroWidget';
 import GalleryCarousel from '@/components/GalleryCarousel';
+import { VideoGrid } from '@/components/site/VideoGrid';
+import { VIDEOS } from '@/data/videos';
 import {
   Sparkles,
   Clock,
@@ -45,53 +47,26 @@ const TREATMENT_IMAGES: Record<string, string> = {
   "rejuvenescimento-facial": "/rejuvenescimento_final.jpg",
 };
 
+/** id antigo do cartão -> slug da página do tratamento. */
+const TREATMENT_SLUGS: Record<string, string> = {
+  "bioestimuladores": "bioestimuladores-de-colageno",
+  "laser-melasma": "laser-para-melasma",
+  "preenchimento-olheiras": "preenchimento-de-olheiras",
+};
+
 export function HomeClient() {
-  const [selectedTreatment, setSelectedTreatment] = useState<Treatment | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   const whatsappUrl = getWhatsAppUrl();
 
-  // Accessibility: close modal on ESC key
+  // Links antigos (#tratamento-x) agora levam à página própria do tratamento.
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setSelectedTreatment(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Listen to hash changes for deep links to treatments
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith('#tratamento-')) {
-        const treatmentId = hash.replace('#tratamento-', '');
-        const found = TREATMENTS.find(t => t.id === treatmentId);
-        if (found) {
-          setSelectedTreatment(found);
-          const element = document.getElementById('tratamentos');
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      }
-    };
-
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  // Lock body scroll when modal is open
-  useEffect(() => {
-    if (selectedTreatment) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+    const hash = window.location.hash;
+    if (hash.startsWith('#tratamento-')) {
+      const id = hash.replace('#tratamento-', '');
+      window.location.replace(`/${TREATMENT_SLUGS[id] ?? id}`);
     }
-  }, [selectedTreatment]);
+  }, []);
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -116,7 +91,7 @@ export function HomeClient() {
     },
     {
       question: "Os procedimentos são seguros?",
-      answer: "Absolutamente. Todos os procedimentos são realizados pela Dra. Samara Rocha, Biomédica Esteta qualificada, utilizando produtos de marcas renomadas mundialmente e seguindo rígidos protocolos de segurança e higiene sanitária."
+      answer: "Absolutamente. Todos os procedimentos são realizados pela Dra. Samara Rocha, biomédica esteta qualificada, utilizando produtos de marcas renomadas mundialmente e seguindo rígidos protocolos de segurança e higiene sanitária."
     },
     {
       question: "Qual tratamento é ideal para mim?",
@@ -124,7 +99,7 @@ export function HomeClient() {
     },
     {
       question: "Onde fica a clínica Dra. Skin?",
-      answer: "A Clínica Dra. Skin está localizada na Rua Dr. César, 1161 — Sala 1011, no bairro de Santana, São Paulo – SP, CEP 02013-004. Atendemos de segunda a sexta das 9h às 19h e aos sábados das 9h às 14h, exclusivamente com hora marcada."
+      answer: "A Clínica Dra. Skin está localizada na Rua Dr. César, 1161, sala 1011, no bairro de Santana, São Paulo, SP, CEP 02013-004. Atendemos de segunda a sexta das 9h às 19h e aos sábados das 9h às 14h, exclusivamente com hora marcada."
     },
     {
       question: "Como agendar uma avaliação?",
@@ -135,7 +110,7 @@ export function HomeClient() {
   return (
     <div className="min-h-screen flex flex-col bg-transparent selection:bg-primary/20">
       <Header />
-      {!selectedTreatment && <FloatingWhatsApp />}
+      <FloatingWhatsApp />
 
       <main className="flex-1">
         {/* HERO SECTION */}
@@ -186,8 +161,8 @@ export function HomeClient() {
                   {/* Image Frame */}
                   <div className="relative w-[220px] xs:w-[250px] sm:w-[320px] md:w-[360px] aspect-square rounded-full overflow-hidden [box-shadow:var(--clay-shadow-lg)] z-10 border-2 border-white/60">
                     <img
-                      src="/dra_skin_hero_real.jpg"
-                      alt="Dra. Samara Rocha, Biomédica Esteta da Clínica Dra. Skin em Santana, São Paulo"
+                      src="/dra_skin_hero_real.webp"
+                      alt="Dra. Samara Rocha, biomédica esteta da Clínica Dra. Skin em Santana, São Paulo"
                       className="w-full h-full object-cover object-[center_15%]"
                       width={360}
                       height={360}
@@ -234,7 +209,7 @@ export function HomeClient() {
                         <Heart className="w-4 h-4 text-white fill-white" />
                       </div>
                       <div>
-                        <p className="font-semibold text-xs text-foreground leading-tight">Beleza Natural</p>
+                        <p className="font-semibold text-xs text-foreground leading-tight">Beleza natural</p>
                         <p className="text-[10px] text-muted-foreground leading-tight mt-0.5">sem exageros</p>
                       </div>
                     </div>
@@ -259,7 +234,7 @@ export function HomeClient() {
                       </div>
                       <div>
                         <p className="font-heading text-xs font-semibold text-foreground leading-tight">Dra. Samara Rocha</p>
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider mt-0.5">CRBM 67943 • Biomédica Esteta</p>
+                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider mt-0.5">CRBM 67943 • Biomédica esteta</p>
                       </div>
                     </div>
                   </motion.div>
@@ -274,11 +249,11 @@ export function HomeClient() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
               {[
-                { title: "Cursos Internacionais", desc: "Londres e Miami" },
-                { title: "Especializações Avançadas", desc: "Injetáveis e Tecnologias" },
-                { title: "Atendimento Personalizado", desc: "Exclusivo para você" },
-                { title: "Tecnologias Modernas", desc: "Equipamentos de ponta" },
-                { title: "Resultados Naturais", desc: "Sua beleza sem exageros" }
+                { title: "Cursos internacionais", desc: "Londres e Miami" },
+                { title: "Especializações avançadas", desc: "Injetáveis e tecnologias" },
+                { title: "Atendimento personalizado", desc: "Exclusivo para você" },
+                { title: "Tecnologias modernas", desc: "Equipamentos de ponta" },
+                { title: "Resultados naturais", desc: "Sua beleza sem exageros" }
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center justify-center p-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary mb-2" />
@@ -296,21 +271,21 @@ export function HomeClient() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               {/* Text Column */}
               <div className="lg:col-span-7 space-y-6 text-left order-2 lg:order-1">
-                <span className="text-xs font-semibold uppercase tracking-widest text-accent">Harmonia Integrada</span>
-                <h2 className="text-headline mt-2">Tratamentos Faciais & Corporais</h2>
+                <span className="text-xs font-semibold uppercase tracking-widest text-accent">Harmonia integrada</span>
+                <h2 className="text-headline mt-2">Tratamentos faciais e corporais</h2>
                 <div className="w-16 h-0.5 bg-primary/40" />
                 <p className="text-sm text-muted-foreground font-light leading-relaxed">
                   Buscamos a harmonia e o rejuvenescimento natural através de protocolos combinados e personalizados. Nossos tratamentos são divididos para cuidar de cada detalhe da sua beleza:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
                   <div className="p-5 bg-secondary/30 rounded-2xl border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)]">
-                    <span className="text-xs font-bold text-accent uppercase tracking-wider block mb-1">Área Facial</span>
+                    <span className="text-xs font-bold text-accent uppercase tracking-wider block mb-1">Área facial</span>
                     <p className="text-[11px] text-muted-foreground font-light leading-relaxed">
                       Procedimentos para suavizar linhas de expressão, restaurar volume, redefinir contornos e devolver o viço e hidratação profunda da pele.
                     </p>
                   </div>
                   <div className="p-5 bg-secondary/30 rounded-2xl border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)]">
-                    <span className="text-xs font-bold text-accent uppercase tracking-wider block mb-1">Área Corporal</span>
+                    <span className="text-xs font-bold text-accent uppercase tracking-wider block mb-1">Área corporal</span>
                     <p className="text-[11px] text-muted-foreground font-light leading-relaxed">
                       Protocolos focados na redução de gordura localizada, flacidez e melhoria da firmeza corporal, incluindo o colo, pescoço e mãos.
                     </p>
@@ -337,31 +312,28 @@ export function HomeClient() {
         <section id="tratamentos" className="py-24 bg-secondary/20">
           <div className="container mx-auto px-4 max-w-7xl text-center">
             <div className="max-w-3xl mx-auto mb-16">
-              <span className="text-xs font-semibold uppercase tracking-widest text-accent">Procedimentos Exclusivos</span>
-              <h2 className="text-headline mt-2 mb-4">Tratamentos Mais Procurados</h2>
+              <span className="text-xs font-semibold uppercase tracking-widest text-accent">Procedimentos exclusivos</span>
+              <h2 className="text-headline mt-2 mb-4">Tratamentos mais procurados</h2>
               <div className="w-16 h-0.5 bg-primary/40 mx-auto" />
               <p className="text-muted-foreground mt-4 font-light">
-                Clique nos tratamentos abaixo para conhecer detalhes, tempo de recuperação e benefícios de cada procedimento.
+                Toque em um tratamento para conhecer detalhes, tempo de recuperação e benefícios de cada procedimento.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {TREATMENTS.map((treatment) => (
-                <div
+                <a
                   key={treatment.id}
-                  onClick={() => setSelectedTreatment(treatment)}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedTreatment(treatment); } }}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Ver detalhes: ${treatment.name}`}
+                  href={`/${TREATMENT_SLUGS[treatment.id] ?? treatment.id}`}
+                  aria-label={`Ver página do tratamento: ${treatment.name}`}
                   className="group cursor-pointer bg-white rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1.5 border border-border/40 [box-shadow:inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.02),4px_4px_16px_rgba(0,0,0,0.04)] hover:[box-shadow:inset_3px_3px_6px_rgba(255,255,255,0.95),inset_-3px_-3px_6px_rgba(0,0,0,0.04),8px_8px_24px_rgba(0,0,0,0.08)] flex flex-col justify-between min-h-[260px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                 >
                   <div>
                     {/* Visual luxury sketch image */}
                     <div className="w-full h-44 rounded-2xl overflow-hidden mb-6 relative bg-white border border-border/30 flex items-center justify-center transition-all duration-300 group-hover:scale-[1.02]">
                       <img
-                        src={TREATMENT_IMAGES[treatment.id] || "/card_face_profile.png"}
-                        alt={`Procedimento estético: ${treatment.name} — Clínica Dra. Skin, Santana SP`}
+                        src={TREATMENT_IMAGES[treatment.id] || "/card_face_profile.webp"}
+                        alt={`Procedimento estético: ${treatment.name}, Clínica Dra. Skin, Santana SP`}
                         className="w-full h-full object-cover mix-blend-multiply"
                         loading="lazy"
                         decoding="async"
@@ -384,108 +356,22 @@ export function HomeClient() {
                       <ArrowRight className="w-4 h-4 text-accent" />
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
+            </div>
+            <div className="mt-12">
+              <a
+                href="/tratamentos"
+                className="inline-flex items-center gap-2 rounded-full bg-white border border-border/60 px-7 py-3.5 text-sm font-semibold text-foreground min-h-11 [box-shadow:var(--clay-shadow-sm)] hover:-translate-y-0.5 transition-transform"
+              >
+                Ver todos os tratamentos
+                <ArrowRight className="w-4 h-4 text-accent" aria-hidden="true" />
+              </a>
             </div>
           </div>
         </section>
 
-        {/* TREATMENT MODALS */}
-        <AnimatePresence>
-          {selectedTreatment && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-              {/* Backdrop */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setSelectedTreatment(null)}
-                className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-              />
 
-              {/* Modal Card */}
-              <motion.div
-                initial={{ scale: 0.95, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="modal-treatment-title"
-                className="relative bg-white rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl z-10 max-h-[85vh] sm:max-h-[90vh] flex flex-col"
-              >
-                {/* Header background pattern */}
-                <div className={`p-6 md:p-8 bg-gradient-to-br ${selectedTreatment.imageColor} relative shrink-0`}>
-                  <button
-                    onClick={() => setSelectedTreatment(null)}
-                    className="absolute top-4 right-4 w-9 h-9 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-colors"
-                  >
-                    <X className="w-5 h-5 text-foreground" />
-                  </button>
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-accent bg-white/80 px-3 py-1 rounded-full">Procedimento Estético</span>
-                  <h3 id="modal-treatment-title" className="font-heading text-xl md:text-2xl font-bold text-foreground mt-4">{selectedTreatment.name}</h3>
-                  <p className="text-xs text-muted-foreground mt-1 font-light leading-relaxed">{selectedTreatment.subtitle}</p>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 md:p-8 overflow-y-auto space-y-6">
-                  <p className="text-sm text-foreground/80 leading-relaxed">
-                    {selectedTreatment.description}
-                  </p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-secondary p-4 rounded-2xl flex items-center gap-3">
-                      <Clock className="w-5 h-5 text-accent shrink-0" />
-                      <div>
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Duração aproximada</p>
-                        <p className="text-xs font-semibold text-foreground">{selectedTreatment.duration}</p>
-                      </div>
-                    </div>
-                    <div className="bg-secondary p-4 rounded-2xl flex items-center gap-3">
-                      <Activity className="w-5 h-5 text-accent shrink-0" />
-                      <div>
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Tempo de recuperação</p>
-                        <p className="text-xs font-semibold text-foreground">{selectedTreatment.recovery}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="font-heading text-sm font-semibold text-foreground flex items-center gap-2">
-                      <Check className="w-4 h-4 text-accent" />
-                      Benefícios Principais
-                    </h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed pl-6">
-                      {selectedTreatment.benefits}
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="font-heading text-sm font-semibold text-foreground flex items-center gap-2">
-                      <User className="w-4 h-4 text-accent" />
-                      Indicado Para
-                    </h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed pl-6">
-                      {selectedTreatment.idealCandidates}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Footer CTA */}
-                <div className="p-4 sm:p-6 border-t border-border/60 bg-secondary/30 flex justify-center sm:justify-end shrink-0">
-                  <a
-                    href={getWhatsAppUrl(selectedTreatment.name)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="h-10 px-6 bg-logo-gradient text-white text-xs font-semibold rounded-full flex items-center justify-center gap-2 shadow-sm transition-all hover:-translate-y-0.5"
-                  >
-                    <span>Agendar Avaliação</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
 
         {/* DRA. SAMARA SECTION (AUTHORITY) */}
         <section id="sobre" className="py-24 bg-secondary/30 relative overflow-hidden">
@@ -495,25 +381,25 @@ export function HomeClient() {
               <div className="lg:col-span-7 space-y-8 text-left">
                 <div>
                   <span className="text-xs font-semibold uppercase tracking-widest text-accent">Dra. Samara Rocha</span>
-                  <h2 className="text-headline mt-2 mb-4">Experiência e Formação Internacional</h2>
+                  <h2 className="text-headline mt-2 mb-4">Experiência e formação internacional</h2>
                   <div className="w-16 h-0.5 bg-primary/40" />
                 </div>
 
                 <div className="relative pl-6 border-l-2 border-primary/20 space-y-8">
                   {[
                     {
-                      period: "Formação Acadêmica",
-                      title: "Biomedicina Estética de Alta Performance",
+                      period: "Formação acadêmica",
+                      title: "Biomedicina estética de alta performance",
                       desc: "Graduada em Biomedicina e Tecnóloga em Estética e Cosmética, com sólida base acadêmica e prática clínica focada na entrega de resultados de excelência."
                     },
                     {
-                      period: "Especialização Avançada",
-                      title: "Expert em Procedimentos Injetáveis",
+                      period: "Especialização avançada",
+                      title: "Expert em procedimentos injetáveis",
                       desc: "Pós-graduada em Biomedicina Estética, com especialização avançada estritamente focada em procedimentos injetáveis premium e tecnologias de alta performance."
                     },
                     {
-                      period: "Certificações Internacionais",
-                      title: "Prática em Polos Globais da Estética",
+                      period: "Certificações internacionais",
+                      title: "Prática em polos globais da estética",
                       desc: "Especializações práticas em Londres (Facial Profiling & Russian Kiss Masterclass), Miami (Estética Avançada e Bioestimuladores) e imersão em Anatomia em Cadáver Fresh Frozen (EUA)."
                     }
                   ].map((timeline, index) => (
@@ -528,7 +414,7 @@ export function HomeClient() {
                 </div>
 
                 <div className="pt-4 flex flex-wrap gap-2">
-                  {["Bioestimuladores Faciais", "Bio Remodeladores", "Toxina Botulínica", "Preenchimento Facial"].map((tag, idx) => (
+                  {["Bioestimuladores faciais", "Biorremodeladores", "Toxina botulínica", "Preenchimento facial"].map((tag, idx) => (
                     <span key={idx} className="bg-white border border-border/80 px-4 py-2 rounded-full text-xs font-medium text-foreground [box-shadow:var(--clay-shadow-sm)]">
                       {tag}
                     </span>
@@ -588,6 +474,13 @@ export function HomeClient() {
         </section>
 
         {/* TESTIMONIALS SECTION */}
+        {/* VÍDEOS DA DRA. SAMARA */}
+        <section id="videos" className="py-24">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <VideoGrid videos={VIDEOS} eyebrow="Segunda Pele" title="A Dra. Samara explica" />
+          </div>
+        </section>
+
         <div id="depoimentos">
           <GoogleReviewsCarousel />
         </div>
@@ -596,8 +489,8 @@ export function HomeClient() {
         <section id="faq" className="py-24 bg-secondary/30">
           <div className="container mx-auto px-4 max-w-3xl text-center">
             <div className="mb-16">
-              <span className="text-xs font-semibold uppercase tracking-widest text-accent">Dúvidas Frequentes</span>
-              <h2 className="text-headline mt-2 mb-4">Perguntas Frequentes</h2>
+              <span className="text-xs font-semibold uppercase tracking-widest text-accent">Dúvidas frequentes</span>
+              <h2 className="text-headline mt-2 mb-4">Perguntas frequentes</h2>
               <div className="w-16 h-0.5 bg-primary/40 mx-auto" />
             </div>
 
@@ -670,7 +563,7 @@ export function HomeClient() {
                     <div>
                       <h4 className="font-heading text-sm font-semibold text-foreground">Endereço</h4>
                       <p className="text-xs text-muted-foreground font-light leading-relaxed mt-1">
-                        Rua Dr. César, 1161 — Sala 1011<br />
+                        Rua Dr. César, 1161, sala 1011<br />
                         Santana • São Paulo - SP<br />
                         CEP 02013-004
                       </p>
@@ -696,7 +589,7 @@ export function HomeClient() {
                 </div>
 
                 <div className="p-6 bg-secondary/50 rounded-2xl border border-border/40">
-                  <h4 className="font-heading text-xs font-bold text-foreground uppercase tracking-wider mb-2">Horário de Atendimento</h4>
+                  <h4 className="font-heading text-xs font-bold text-foreground uppercase tracking-wider mb-2">Horário de atendimento</h4>
                   <p className="text-xs text-muted-foreground font-light">Segunda a Sexta: 09h às 19h<br />Sábados: 09h às 14h</p>
                   <p className="text-[10px] text-accent font-semibold mt-2">Atendimento exclusivo com hora marcada.</p>
                 </div>

@@ -13,7 +13,7 @@ export interface Treatment {
 export const TREATMENTS: Treatment[] = [
   {
     id: "harmonizacao-facial",
-    name: "Harmonização Facial",
+    name: "Harmonização facial",
     subtitle: "Restauração da simetria, sustentação e contornos faciais",
     description: "Procedimento personalizado que combina diferentes técnicas injetáveis para equilibrar os traços do rosto e definir contornos como mento e mandíbula, valorizando a sua beleza natural.",
     duration: "60 a 90 minutos",
@@ -24,7 +24,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: "preenchimento-labial",
-    name: "Preenchimento Labial",
+    name: "Preenchimento labial",
     subtitle: "Volume, definição e hidratação com naturalidade",
     description: "Aplicação precisa de ácido hialurônico para devolver ou aumentar o volume dos lábios, definir o contorno e proporcionar hidratação profunda.",
     duration: "30 a 45 minutos",
@@ -35,7 +35,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: "toxina-botulinica",
-    name: "Toxina Botulínica",
+    name: "Toxina botulínica",
     subtitle: "Prevenção e suavização de rugas e linhas de expressão",
     description: "Aplicação precisa da toxina para suavizar linhas dinâmicas (testa, glabela e pés de galinha) ou para o tratamento de hiperidrose (suor excessivo nas axilas, mãos, pés e cabeça).",
     duration: "20 a 30 minutos",
@@ -46,7 +46,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: "bioestimuladores",
-    name: "Bioestimuladores de Colágeno",
+    name: "Bioestimuladores de colágeno",
     subtitle: "Estímulo natural da firmeza e sustentação da pele",
     description: "Injeção de substâncias que estimulam a produção natural de colágeno de forma gradual. Excelente para tratar a flacidez facial e corporal, incluindo colo, pescoço e mãos.",
     duration: "45 minutos",
@@ -79,7 +79,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: "laser-melasma",
-    name: "Laser para Melasma",
+    name: "Laser para melasma",
     subtitle: "Clareamento seguro e preciso de manchas",
     description: "Uso de tecnologias de laser específicas que agem de maneira fotoacústica, quebrando o pigmento de melanina em partículas menores sem gerar calor excessivo, o que evita o efeito rebote.",
     duration: "30 a 45 minutos",
@@ -90,7 +90,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: "laser-rejuvenescimento",
-    name: "Laser Rejuvenescimento",
+    name: "Laser rejuvenescimento",
     subtitle: "Estímulo de colágeno, textura e redução de poros",
     description: "Tratamento tecnológico a laser focado em promover microlesões controladas nas camadas profundas da pele para induzir um processo de cicatrização que renova o colágeno.",
     duration: "30 a 45 minutos",
@@ -106,13 +106,13 @@ export const TREATMENTS: Treatment[] = [
     description: "Tecnologia não invasiva que resfria as células de gordura a temperaturas negativas, causando a sua destruição (apoptose) e posterior eliminação natural pelo organismo.",
     duration: "60 minutos por área",
     recovery: "Imediato (área tratada pode ficar dormente ou avermelhada temporariamente)",
-    benefits: "Redução de até 25% a 30% da gordura localizada na região tratada por sessão, sem necessidade de cortes ou repouso.",
+    benefits: "Redução de 20% a 25% da gordura localizada na região tratada por sessão, sem necessidade de cortes ou repouso.",
     idealCandidates: "Pessoas próximas ao seu peso ideal que possuem depósitos de gordura localizada difíceis de perder com dieta e exercícios.",
     imageColor: "from-[#C69A86]/40 to-[#EDBEAC]/20"
   },
   {
     id: "tratamentos-capilares",
-    name: "Tratamentos Capilares",
+    name: "Tratamentos capilares",
     subtitle: "Terapias capilares avançadas contra queda",
     description: "Associação de técnicas como microagulhamento capilar, aplicação de ativos específicos diretamente no couro cabeludo (Meso/Intradermoterapia) e fotobioestimulação para combater a calvície.",
     duration: "40 a 50 minutos",
@@ -134,7 +134,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: "preenchimento-olheiras",
-    name: "Preenchimento de Olheiras",
+    name: "Preenchimento de olheiras",
     subtitle: "Suavização de profundidade e redução de cansaço",
     description: "Aplicação cuidadosa de ácido hialurônico de baixa densidade no sulco lacrimal para preencher a concavidade sob os olhos, suavizando a sombra escura.",
     duration: "30 minutos",
@@ -145,7 +145,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: "rejuvenescimento-facial",
-    name: "Rejuvenescimento Facial",
+    name: "Rejuvenescimento facial",
     subtitle: "Protocolo integrado de rejuvenescimento global",
     description: "Combinação personalizada dos melhores tratamentos (como toxina, bioestimuladores e preenchimentos) planejados sob medida para restaurar a juventude celular e estrutural da pele.",
     duration: "Definido na avaliação",

@@ -6,14 +6,17 @@ import { getWhatsAppUrl } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Tratamentos", href: "#tratamentos" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Galeria", href: "#galeria" },
-  { label: "Depoimentos", href: "#depoimentos" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contato", href: "#contato" },
+  { label: "Home", href: "/#home" },
+  { label: "Tratamentos", href: "/tratamentos" },
+  { label: "Dra. Samara", href: "/dra-samara-rocha" },
+  { label: "Galeria", href: "/#galeria" },
+  { label: "Depoimentos", href: "/#depoimentos" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contato", href: "/#contato" },
 ];
+
+/** "/#faq" -> "faq"; "/tratamentos" -> "tratamentos". */
+const sectionId = (href: string) => href.replace(/^\/#?/, '').replace(/^#/, '');
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -42,7 +45,8 @@ export const Header = () => {
       const scrollPosition = window.scrollY + 100;
 
       for (const item of navItems) {
-        const targetId = item.href.substring(1);
+        if (!item.href.includes('#')) continue;
+        const targetId = sectionId(item.href);
         const element = document.getElementById(targetId);
         if (element) {
           const offsetTop = element.offsetTop;
@@ -59,18 +63,24 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Na home, links com âncora rolam suavemente; nas outras páginas o link navega para a home.
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
     setIsMobileMenuOpen(false);
-    const targetId = href.substring(1);
-    const element = document.getElementById(targetId);
+    if (!href.includes('#') || window.location.pathname !== '/') return;
+    const element = document.getElementById(sectionId(href));
     if (element) {
+      e.preventDefault();
       window.scrollTo({
         top: element.offsetTop - 80,
         behavior: 'smooth'
       });
     }
   };
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path !== '/') setActiveSection(sectionId(path));
+  }, []);
 
   return (
     <>
@@ -93,8 +103,8 @@ export const Header = () => {
               {/* Logo - CENTERED on Mobile, LEFT on Desktop */}
               <div className="absolute left-1/2 -translate-x-1/2 lg:static lg:left-0 lg:translate-x-0 flex-shrink-0 flex items-center">
                 <a
-                  href="#home"
-                  onClick={(e) => handleNavClick(e, "#home")}
+                  href="/#home"
+                  onClick={(e) => handleNavClick(e, "/#home")}
                   className="flex items-center gap-1.5"
                 >
                   <img src="/logo.png" alt="Dra. Skin Logo" className="h-8 md:h-10 w-auto object-contain" />
@@ -108,7 +118,7 @@ export const Header = () => {
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 rounded-lg hover:text-logo-gradient ${activeSection === item.href.substring(1)
+                    className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 rounded-lg hover:text-logo-gradient ${activeSection === sectionId(item.href)
                         ? 'text-logo-gradient bg-background/50 [box-shadow:inset_1px_1px_2px_rgba(0,0,0,0.02)]'
                         : 'text-muted-foreground'
                       }`}
@@ -176,7 +186,7 @@ export const Header = () => {
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`block py-2.5 text-xs font-semibold uppercase tracking-[0.15em] transition-all hover:text-logo-gradient ${activeSection === item.href.substring(1)
+                    className={`block py-2.5 text-xs font-semibold uppercase tracking-[0.15em] transition-all hover:text-logo-gradient ${activeSection === sectionId(item.href)
                         ? 'text-logo-gradient pl-2 border-l-2 border-primary/50'
                         : 'text-foreground'
                       }`}

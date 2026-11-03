@@ -1,3 +1,11 @@
 {
-  "installCommand": "npx --yes yarn@1.22.22 install"
+  "installCommand": "npx --yes yarn@1.22.22 install",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.draskinbrasil.com.br" }],
+      "destination": "https://draskinbrasil.com.br/:path*",
+      "permanent": true
+    }
+  ]
 }

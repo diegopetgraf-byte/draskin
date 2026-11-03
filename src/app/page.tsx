@@ -8,6 +8,8 @@ import {
   generatePersonSchema,
   generateFAQSchema,
 } from '@/lib/seo/schemas';
+import { videoSchema } from '@/components/site/VideoGrid';
+import { VIDEOS } from '@/data/videos';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://draskinbrasil.com.br';
 
@@ -41,7 +43,7 @@ const faqItems = [
   },
   {
     question: 'Os procedimentos são seguros?',
-    answer: 'Absolutamente. Todos os procedimentos são realizados pela Dra. Samara Rocha, Biomédica Esteta qualificada, utilizando produtos de marcas renomadas mundialmente e seguindo rígidos protocolos de segurança e higiene sanitária.',
+    answer: 'Absolutamente. Todos os procedimentos são realizados pela Dra. Samara Rocha, biomédica esteta qualificada, utilizando produtos de marcas renomadas mundialmente e seguindo rígidos protocolos de segurança e higiene sanitária.',
   },
   {
     question: 'Qual tratamento é ideal para mim?',
@@ -49,7 +51,7 @@ const faqItems = [
   },
   {
     question: 'Onde fica a clínica Dra. Skin?',
-    answer: 'A Clínica Dra. Skin está localizada na Rua Dr. César, 1161 — Sala 1011, no bairro de Santana, São Paulo – SP, CEP 02013-004. Atendemos de segunda a sexta das 9h às 19h e aos sábados das 9h às 14h, exclusivamente com hora marcada.',
+    answer: 'A Clínica Dra. Skin está localizada na Rua Dr. César, 1161, sala 1011, no bairro de Santana, São Paulo, SP, CEP 02013-004. Atendemos de segunda a sexta das 9h às 19h e aos sábados das 9h às 14h, exclusivamente com hora marcada.',
   },
   {
     question: 'Como agendar uma avaliação?',
@@ -66,7 +68,7 @@ export default function Home() {
 
   return (
     <>
-      <JsonLd data={[organizationSchema, websiteSchema, localBusinessSchema, personSchema, faqSchema]} />
+      <JsonLd data={[organizationSchema, websiteSchema, localBusinessSchema, personSchema, faqSchema, ...VIDEOS.map(videoSchema)]} />
       <HomeClient />
     </>
   );

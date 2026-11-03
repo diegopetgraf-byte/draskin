@@ -8,7 +8,7 @@ import { toAbsoluteUrl } from './utils';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://draskinbrasil.com.br';
 const SITE_NAME = 'Dra. Skin';
-const LOGO_URL = toAbsoluteUrl('/og.png');
+const LOGO_URL = toAbsoluteUrl('/logo.png');
 
 export interface ProductSchemaInput {
   name: string;
@@ -189,14 +189,14 @@ export function generateWebSiteSchema(): object {
     name: SITE_NAME,
     alternateName: 'Clínica Dra. Skin Santana',
     url: SITE_URL,
-    description: 'Estética facial e corporal em Santana, São Paulo — procedimentos injetáveis e a laser com a Dra. Samara Rocha.',
+    description: 'Estética facial e corporal em Santana, São Paulo, procedimentos injetáveis e a laser com a Dra. Samara Rocha.',
     inLanguage: 'pt-BR',
   };
 }
 
 /**
  * Generate HealthAndBeautyBusiness (LocalBusiness) schema
- * Note: Dra. Samara Rocha is a Biomédica Esteta (CRBM), not a physician.
+ * Note: Dra. Samara Rocha is a biomédica esteta (CRBM), not a physician.
  * HealthAndBeautyBusiness is the correct type.
  */
 export function generateLocalBusinessSchema(): object {
@@ -205,7 +205,7 @@ export function generateLocalBusinessSchema(): object {
     '@type': 'HealthAndBeautyBusiness',
     '@id': `${SITE_URL}/#localbusiness`,
     name: SITE_NAME,
-    image: LOGO_URL,
+    image: toAbsoluteUrl('/og.jpg'),
     url: SITE_URL,
     telephone: '+55-11-99926-3636',
     priceRange: '$$',
@@ -221,8 +221,8 @@ export function generateLocalBusinessSchema(): object {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: -23.5019,
-      longitude: -46.6254,
+      latitude: -23.5026797,
+      longitude: -46.6371956,
     },
     hasMap: 'https://maps.app.goo.gl/Ev9zhZhc1WYmpFBX9',
     areaServed: {
@@ -259,9 +259,9 @@ export function generatePersonSchema(): object {
     '@type': 'Person',
     '@id': `${SITE_URL}/#person-samara-rocha`,
     name: 'Dra. Samara Rocha',
-    jobTitle: 'Biomédica Esteta',
-    description: 'Biomédica Esteta (CRBM 67943) especialista em procedimentos injetáveis e tecnologias a laser. Atua na Clínica Dra. Skin em Santana, São Paulo.',
-    image: `${SITE_URL}/dra_skin_hero_real.jpg`,
+    jobTitle: 'Biomédica esteta',
+    description: 'biomédica esteta (CRBM 67943). Atua com procedimentos injetáveis e tecnologias a laser na Clínica Dra. Skin, em Santana, São Paulo.',
+    image: `${SITE_URL}/dra_skin_hero_real.webp`,
     worksFor: {
       '@id': `${SITE_URL}/#localbusiness`,
     },
